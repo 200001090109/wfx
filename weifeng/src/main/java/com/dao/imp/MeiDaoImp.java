@@ -60,7 +60,7 @@ public class MeiDaoImp implements MeiDao{
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "select max(id) from mei where user = ?";
-            Number number = queryRunner.query(sql1,new ScalarHandler<>(),userId);
+            Number number = (Number) queryRunner.query(sql1,new ScalarHandler<>(),userId);
             return number.longValue();
         } catch (Exception e) {
             e.printStackTrace();
