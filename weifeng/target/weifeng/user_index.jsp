@@ -23,7 +23,7 @@
   	  	  </div>
   	  	  <div class="userbox-2">
   	  	  	  <ul class="clearfix">
-  	  	  	  	<li><a href="user_tixian.html" class="c000"><span>¥${user.yue}</span><br>钱包余额</a></li>
+  	  	  	  	<li><a href="user_tixian.jsp" class="c000"><span>¥${user.yue}</span><br>钱包余额</a></li>
   	  	  	  	<li><span>¥${user.tixian}</span><br>已提现余额</li>
   	  	  	  </ul>
   	  	  </div>

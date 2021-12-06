@@ -18,11 +18,11 @@ public class LoginCheckServlet extends HttpServlet {
         User user = ud.loginCheck(userName, pwd);
         if (user != null) {
             request.getSession().setAttribute("user",user);
-            response.sendRedirect("/wf/user_index.jsp?isLogin=ture");
+            response.sendRedirect("/weifeng/user_index.jsp?isLogin=ture");
         }else {
             request.getSession().setAttribute("user",new User(0,"未登陆","未登陆","weifeng//images//not_login.png",
                     "未登陆","未登陆","未登陆","未登陆","未登陆",0,0));
-            response.sendRedirect("/wf/user_login.jsp");
+            response.sendRedirect("/weifeng/user_login.jsp");
         }
     }
 
