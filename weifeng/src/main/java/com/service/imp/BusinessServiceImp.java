@@ -92,7 +92,7 @@ public class BusinessServiceImp implements BusinessService {
      *
      * @param userId 提现的用户id
      * @param jine  提现金额
-     * @return 返回-1余额不足,成功返回0
+     * @return 返回-1余额不足,成功返回剩余金额
      */
     @Override
     public int tixian(long userId, double jine) {

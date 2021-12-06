@@ -36,7 +36,7 @@ public class UserDaoImp implements UserDao {
             if(jine>yue.doubleValue())return -1;
             String sql2 = "update weifengxiang set yue =yue-?,tixian = tixian+? where id = ?";
             queryRunner.update(sql2,new Object[]{jine,jine,userId});
-            return 0;
+            return (int) (yue.doubleValue()-jine);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
