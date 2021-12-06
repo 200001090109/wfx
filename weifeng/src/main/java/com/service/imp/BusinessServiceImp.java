@@ -99,7 +99,6 @@ public class BusinessServiceImp implements BusinessService {
         return userService.tixian(userId, jine);
     }
 
-
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));

@@ -21,11 +21,11 @@ public class CodeImageUtil {
         conn.setConnectTimeout(5 * 1000);
         InputStream in = conn.getInputStream();
         byte[] data = readInputStream(in);
-        File imageFile = new File(outFile + text + ".jpg");
+        File imageFile = new File(outFile + text + "_code.jpg");
         FileOutputStream outputStream = new FileOutputStream(imageFile);
         outputStream.write(data);
         outputStream.close();
-        return outFile + text + ".jpg";
+        return outFile + text + "_code.jpg";
     }
 
     /**

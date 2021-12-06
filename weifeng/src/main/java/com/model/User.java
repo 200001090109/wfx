@@ -12,6 +12,7 @@ public class User {
     private String qianming;
     private double yue;
     private double tixian;
+    private String code;
 
     public User(long id, String name, String pwd, String filePath, String nickname, String sex, String tel,
                 String email, String qianming, double yue, double tixian) {
@@ -117,6 +118,14 @@ public class User {
 
     public void setQianming(String qianming) {
         this.qianming = qianming;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public User(int id, String name, String pwd, String filePath, String nickname, String sex, String tel, String email, String qianming) {

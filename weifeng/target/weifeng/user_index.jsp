@@ -50,7 +50,7 @@
   	  	   	  	</a>
   	  	   	  </li>
   	  	   	  <li>
-  	  	   	  	<a href="user_code.html" class="arrow-right">
+  	  	   	  	<a href="user_code.jsp" class="arrow-right">
   	  	   	  	  <i class="iconfont">&#xe604;</i>一键生成二维码
   	  	   	  	</a>
   	  	   	  </li>

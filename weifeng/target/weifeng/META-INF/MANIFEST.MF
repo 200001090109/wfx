@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-<<<<<<< Updated upstream
-Built-By: zyp
-Build-Jdk: 1.8.0_291
-=======
 Built-By: 32062
 Build-Jdk: 1.8.0_201
->>>>>>> Stashed changes
 
