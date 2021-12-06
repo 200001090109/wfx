@@ -1,3 +1,4 @@
+<%--美拍列表--%>
 <%@ page import="com.service.BusinessService" %>
 <%@ page import="com.service.imp.BusinessServiceImp" %>
 <%@ page import="com.model.User" %>
@@ -76,34 +77,6 @@
 	  </c:if>
 
   </div>
-<%--<%@include file="footer.jsp"%>--%>
-  <footer id="footer" class="foot">
-        <ul>
-            <li>
-            	<a href="index.jsp">
-	                <span class="img"><img src="images/nav1.png"></span>
-	                <p>首页</p>
-            	</a>
-            </li>
-            <li class="active">
-            	<a href="tiediy.jsp">
-                   <span class="img"><img src="images/nav2.png"></span>
-                   <p>贴DIY</p>
-            	</a>
-            </li>
-            <li>
-            	<a href="meidiy.html">
-	                <span class="img"><img src="images/nav3.png"></span>
-	                <p>美DIY</p>
-            	</a>
-            </li>
-            <li>
-            	<a href="user_login.jsp">
-	                <span class="img"><img src="images/nav4.png"></span>
-	                <p>我的</p>
-            	</a>
-            </li>
-        </ul>
-  </footer>
+<%@include file="footer.jsp"%>
 </body>
 </html>

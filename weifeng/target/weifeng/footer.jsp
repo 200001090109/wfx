@@ -1,3 +1,4 @@
+<%--页面的底部--%>
 <%@ page contentType="text/html;charset=UTF-8"  %>
 <footer id="footer" class="foot">
     <ul>

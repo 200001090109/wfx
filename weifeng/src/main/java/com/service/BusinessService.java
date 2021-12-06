@@ -13,4 +13,11 @@ public interface BusinessService {
     List<Wmei> getByType(long userId, String type);
     List<Wmei> getAllMei();
     List<Wmei> getJingxuan(long userId);
+
+    /**
+     *
+     * @param userId 提现的用户id
+     * @param jine  提现金额
+     */
+    int tixian(long userId,double jine);
 }

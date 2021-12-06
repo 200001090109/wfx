@@ -88,8 +88,20 @@ public class BusinessServiceImp implements BusinessService {
         return meiService.getJingxuan(userId);
     }
 
+    /**
+     *
+     * @param userId 提现的用户id
+     * @param jine  提现金额
+     * @return 返回-1余额不足,成功返回0
+     */
+    @Override
+    public int tixian(long userId, double jine) {
+        return userService.tixian(userId, jine);
+    }
+
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
-        System.out.println(bs.getAllMei(1));
+        System.out.println(bs.tixian(1,2000));
     }
 }
