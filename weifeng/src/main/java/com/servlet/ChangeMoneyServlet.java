@@ -20,11 +20,12 @@ public class ChangeMoneyServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         if (money > 0) {
             BusinessServiceImp bs = new BusinessServiceImp();
-            int result = bs.tixian(user.getId(), money);
-            if (result == 0) {
-//                request.getRequestDispatcher("user_index.jsp").forward(request, response);
-                response.sendRedirect("/weifeng/user_index.jsp");
-                request.getSession().setAttribute("user", user);
+            // result: 当前剩余金额
+            double result = bs.tixian(user.getId(), money);
+            user.setYue(result);
+            user.setTixian(user.getTixian()+money);
+            if (result > 0) {
+                request.getRequestDispatcher("user_index.jsp").forward(request, response);
             }else {
                 // 余额不足
                 request.getRequestDispatcher("user_tixian.jsp").forward(request, response);
