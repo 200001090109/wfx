@@ -13,8 +13,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
 	<title>微风向</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<link href="iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath}/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
 </head>
 <%
 	BusinessService bs = new BusinessServiceImp();
