@@ -2,11 +2,15 @@ package com.model;
 
 import java.util.List;
 
+/**
+ * 一个完整的美拍/言/视
+ * firstPath为一个美的首个文件路径,用作封面
+ */
 public class Wmei {
     private Mei mie;
     private List<FilePath> filePath;
     private String firstPath;
-
+    private User owner;
     public User getOwner() {
         return owner;
     }
@@ -14,9 +18,6 @@ public class Wmei {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
-    private User owner;
-
 
     public String getFirstPath() {
         return firstPath;

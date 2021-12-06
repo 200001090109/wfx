@@ -3,6 +3,9 @@ package com.model;
 
 import java.sql.Timestamp;
 
+/**
+ * 一个美拍/言/视,但是不包含文件路径
+ */
 public class Mei {
 
   private long id;
