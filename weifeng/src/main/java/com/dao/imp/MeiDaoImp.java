@@ -126,6 +126,62 @@ public class MeiDaoImp implements MeiDao{
         }
     }
 
+    /**
+     * 根据美id和userId增加或减少赞,flags为1时增加,为0时候取消赞
+     *
+     * @param meiId
+     * @param userId
+     * @param flags
+     */
+    @Override
+    public void zan(long meiId, long userId, int flags) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            if(flags ==1){
+                String sql1 ="insert into zan(userid, meiid) values (?,?)";
+                String sql2 = "update mei set beizan = beizan+1 where id=?";
+                queryRunner.update(sql1, userId,meiId);
+                queryRunner.update(sql2, meiId);
+            }else {
+                String sql1 ="delete from zan where userid = ? and meiid=?  ";
+                String sql2 = "update mei set beizan = beizan-1 where id=?";
+                queryRunner.update(sql1, userId,meiId);
+                queryRunner.update(sql2, meiId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 根据美id和userId增加或减少收藏,flags为1时增加,为0时候取消收藏
+     *
+     * @param meiId
+     * @param userId
+     * @param flags
+     */
+    @Override
+    public void shoucang(long meiId, long userId, int flags) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            if(flags ==1){
+                String sql1 ="insert into shoucang(userid, meiid) values (?,?)";
+                String sql2 = "update mei set beishoucang = beishoucang+1 where id=?";
+                queryRunner.update(sql1, userId,meiId);
+                queryRunner.update(sql2, meiId);
+            }else {
+                String sql1 ="delete from shoucang where userid = ? and meiid=?  ";
+                String sql2 = "update mei set beishoucang = beishoucang-1 where id=?";
+                queryRunner.update(sql1, userId,meiId);
+                queryRunner.update(sql2, meiId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         Class cls = MeiDaoImp.class;
         System.out.println(cls.getName());

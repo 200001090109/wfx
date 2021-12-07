@@ -23,4 +23,6 @@ public interface BusinessService {
     void addCodeImage(String text,long userId);
     void userAlter(User user);
     User getYserById(long userId);
+    void shoucang(long meiId, long userId, int flags);
+    void zan(long meiId, long userId, int flags);
 }

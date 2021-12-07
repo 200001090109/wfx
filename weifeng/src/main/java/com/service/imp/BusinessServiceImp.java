@@ -127,6 +127,16 @@ public class BusinessServiceImp implements BusinessService {
         return userService.getUserById(userId);
     }
 
+    @Override
+    public void shoucang(long meiId, long userId, int flags) {
+        meiService.shoucang(meiId, userId, flags);
+    }
+
+    @Override
+    public void zan(long meiId, long userId, int flags) {
+        meiService.zan(meiId, userId, flags);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));
