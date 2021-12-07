@@ -27,4 +27,5 @@ public interface BusinessService {
     void zan(long meiId, long userId, int flags);
     List<Wmei> getAllZanById(long userId);
     List<Wmei> getAllCollectById(long userId);
+    void addUser(User user);
 }

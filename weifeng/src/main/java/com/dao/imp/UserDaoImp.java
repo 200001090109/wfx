@@ -141,6 +141,25 @@ public class UserDaoImp implements UserDao {
         }
     }
 
+    /**
+     * 添加用户
+     *
+     * @param user
+     */
+    @Override
+    public void addUser(User user) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "insert into weifengxiang( pwd, name, filePath, nickname, sex, tel, email, qianming) " +
+                    "values( ?,?,?,?,?,?,?,?)";
+            queryRunner.update(sql,user.getPwd(),user.getName(),user.getFilePath(),user.getNickname(),user.getSex(),
+                    user.getTel(),user.getEmail(),user.getQianming());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         UserDaoImp ui = new UserDaoImp();
         System.out.println(ui.getAllZanById(1).size());
