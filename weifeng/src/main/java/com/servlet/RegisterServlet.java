@@ -21,6 +21,8 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         // 1.获取上传的信息
         // 手机号
         String newtel = request.getParameter("newtel");
@@ -29,8 +31,6 @@ public class RegisterServlet extends HttpServlet {
         String newpwds = request.getParameter("newpwds");
         // 名称
         String newname = request.getParameter("newname");
-        // 获取上传的图片
-//        String newfilepath = upload(request, response);
         // 昵称
         String newnickname = request.getParameter("newnickname");
         // 邮箱

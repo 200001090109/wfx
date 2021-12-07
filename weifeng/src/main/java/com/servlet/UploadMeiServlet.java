@@ -22,7 +22,6 @@ public class UploadMeiServlet extends HttpServlet {
             response.setContentType("text/html;chatset=utf-8");
             // 创建DiskFileItemFactory对象
             DiskFileItemFactory factory = new DiskFileItemFactory();
-
             //
             File f = new File("/src/main/webapp/images");
             // 设置文件缓存路径
