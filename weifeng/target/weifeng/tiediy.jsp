@@ -55,7 +55,7 @@
   	 		</ul>
 
   	 	    <div class="Edit">
-  	 	    	<a href="tie_edit.html" class="edit-btn"><i class="iconfont">&#xe62e;</i>我要贴</a>
+  	 	    	<a href="meidiy.html" class="edit-btn"><i class="iconfont">&#xe62e;</i>我要贴</a>
   	 	    </div>
   	 	</div>
   	</div>  
