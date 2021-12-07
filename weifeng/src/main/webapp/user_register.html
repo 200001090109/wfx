@@ -17,50 +17,79 @@
   <div class="content">
   	 <div class="register-box">
   	 	 <div class="form-box">
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe64f;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="输入手机号/邮箱/昵称">
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="输入密码">
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="再次输入密码">
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="输入昵称">
-  	 	 		</div>
-  	 	 	</div><div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe6a8;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<span>性别</span>
-  	 	 			<label><input class="btn-radio" type="radio" name="radio1" checked>男</label>
-                    <label><input class="btn-radio" type="radio" name="radio1">女</label>
-  	 	 		</div>
-  	 	 	</div><div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe60f;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<span>支付方式</span>
-  	 	 			<label style="color: #24a82e;"><input class="btn-radio" type="radio" name="radio2" checked>微信</label>
-                    <label style="color: #2d95de;"><input class="btn-radio" type="radio" name="radio2">银行卡</label>
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-txt">
-  	 	 		<p><input class="checkbox" type="checkbox" name="checkbox">已阅读并同意<a href="user_xieyi.html">《微风向用户协议》</a></p>
-  	 	 	</div>
-  	 	 	<div class="row row-btn">
-  	 	 		<a class="green-btn">确定</a>
-  	 	 	</div>
+			 <form action="/RegisterServlet" method="post" enctype="multipart/form-data">
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe64f;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="newtel" placeholder="输入手机号">
+					</div>
+				</div>
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="newpwd" placeholder="输入密码">
+					</div>
+				</div>
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="newpwds" placeholder="再次输入密码">
+					</div>
+				</div>
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="newname" placeholder="输入名称">
+					</div>
+				</div>
+				 <div class="row row-input clearfix">
+					 <div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
+					 <div class="row-r">
+						 <input type="file" class="input_box" name="newfilePath" placeholder="上传头像">
+					 </div>
+				 </div>
+				 <div class="row row-input clearfix">
+					 <div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
+					 <div class="row-r">
+						 <input class="input_box" name="newnickname" placeholder="输入昵称">
+					 </div>
+				 </div>
+				 <div class="row row-input clearfix">
+					 <div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
+					 <div class="row-r">
+						 <input class="input_box" name="newemail" placeholder="输入邮箱">
+					 </div>
+				 </div>
+				 <div class="row row-input clearfix">
+					 <div class="row-l fl"><i class="iconfont">&#xe608;</i></div>
+					 <div class="row-r">
+						 <input class="input_box" name="newqianming" placeholder="输入签名">
+					 </div>
+				 </div>
+				 <div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe6a8;</i></div>
+					<div class="row-r">
+						<span>性别</span>
+						<label><input class="btn-radio" type="radio" name="radio1" checked>男</label>
+						<label><input class="btn-radio" type="radio" name="radio1">女</label>
+					</div>
+				</div>
+				 <div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe60f;</i></div>
+					<div class="row-r">
+						<span>支付方式</span>
+						<label style="color: #24a82e;"><input class="btn-radio" type="radio" name="radio2" checked>微信</label>
+						<label style="color: #2d95de;"><input class="btn-radio" type="radio" name="radio2">银行卡</label>
+					</div>
+				</div>
+				<div class="row row-txt">
+					<p><input class="checkbox" type="checkbox" name="checkbox">已阅读并同意<a href="user_xieyi.html">《微风向用户协议》</a></p>
+				</div>
+				<div class="row row-btn">
+					<input type="submit" class="green-btn" value="确定">
+<!--					<a class="green-btn">确定</a>-->
+				</div>
+			 </form>
   	 	 </div>
   	 </div>
      <div class="register-table">
