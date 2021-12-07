@@ -71,8 +71,8 @@
 					<div class="row-l fl"><i class="iconfont">&#xe6a8;</i></div>
 					<div class="row-r">
 						<span>性别</span>
-						<label><input class="btn-radio" type="radio" name="radio1" checked>男</label>
-						<label><input class="btn-radio" type="radio" name="radio1">女</label>
+						<label><input class="btn-radio" type="radio" name="radio1" value="男" checked>男</label>
+						<label><input class="btn-radio" type="radio" name="radio1" value="女">女</label>
 					</div>
 				</div>
 				 <div class="row row-input clearfix">
