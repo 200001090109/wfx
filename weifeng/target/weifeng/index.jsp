@@ -81,8 +81,14 @@
                             <p class="txt"><a href="tiediy_detail.html">${pai.mie.title}</a></p>
                             <div class="info clearfix">
                                 <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${user.nickname}</span>
-                                <span class="zan"><i class="iconfont">&#xe600;</i>${pai.mie.beizan}</span>
-                                <span class="collect"><i class="iconfont">&#xe605;</i>${pai.mie.beishoucang}</span>
+                                <span
+                                        class="zan"><i class="iconfont" style="color:
+                                        ${zans.contains(pai.mie.id)?'red':'grey'};">&#xe600;</i>${pai.mie.beizan}</span>
+                                <span
+                                        class="collect"><i class="iconfont"
+                                                           style="color:
+                                                           ${collects.contains(pai.mie.id)?'orange':'grey'}">&#xe605;
+                                </i>${pai.mie.beishoucang}</span>
                             </div>
                         </div>
                     </li>
