@@ -28,4 +28,16 @@ public interface BusinessService {
     List<Wmei> getAllZanById(long userId);
     List<Wmei> getAllCollectById(long userId);
     void addUser(User user);
+
+    /**
+     * 点赞排序获取所有美
+     * @return
+     */
+    List<Wmei> getAllMeiOrderByZan();
+
+    /**
+     * 收藏排序获取所有美
+     * @return
+     */
+    List<Wmei> getAllMeiOrderByShoucang();
 }

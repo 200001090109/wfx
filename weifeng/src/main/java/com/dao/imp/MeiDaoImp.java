@@ -182,6 +182,46 @@ public class MeiDaoImp implements MeiDao{
         }
     }
 
+    @Override
+    public List<Wmei> getAllMeiOrderByZan() {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select * from mei order by beizan";
+            String sql2 = "select * from filePath where meiid = ?";
+            String sql3 = "select * from weifengxiang where id = ?";
+            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
+            List<Wmei> wmeis = new ArrayList<>();
+            for(Mei mei : meis) {
+                wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId()),
+                        queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser())));
+            }
+            return wmeis;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Wmei> getAllMeiOrderByShoucang() {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select * from mei order by beishoucang";
+            String sql2 = "select * from filePath where meiid = ?";
+            String sql3 = "select * from weifengxiang where id = ?";
+            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
+            List<Wmei> wmeis = new ArrayList<>();
+            for(Mei mei : meis) {
+                wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId()),
+                        queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser())));
+            }
+            return wmeis;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         Class cls = MeiDaoImp.class;
         System.out.println(cls.getName());

@@ -42,8 +42,20 @@
   	 					<div class="txt-box">
 	  	 					<p class="txt"><a href="tiediy_detail.html">${wmei.mie.title}</a></p>
 	  	 					<div class="info clearfix">
-	  	 						<span class="zan"><i class="iconfont">&#xe600;</i>${wmei.mie.beizan}</span>
-	  	 						<span class="collect"><i class="iconfont">&#xe605;</i>${wmei.mie.beishoucang}</span>
+	  	 						<span class="zan">
+									<a href="/weifeng/ZanServlet?flag=${zans.contains(wmei.mie.id)?'0':1}&meiId=${wmei.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont"
+										   style="color: ${zans.contains(wmei.mie.id)?'red':'grey'};">&#xe600;
+                                        </i>${wmei.mie.beizan}
+                                    </a>
+								</span>
+	  	 						<span class="collect">
+									<a href="/weifeng/CollectServlet?flag=${collects.contains(wmei.mie.id)?'0':1}&meiId=${wmei.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont" style="color:
+                                                           ${collects.contains(wmei.mie.id)?'orange':'grey'}">&#xe605;
+                                        </i>${wmei.mie.beishoucang}
+                                    </a>
+								</span>
 	  	 						<span class="author"><img src="${pageContext.request.contextPath}/${wmei.owner.filePath}">${wmei.owner.nickname}</span>
 	  	 					</div>
 	  	 				</div>
