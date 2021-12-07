@@ -93,7 +93,7 @@
                 <c:forEach items="<%=yans%>" var="yan">
                 <li>
                     <div class="photo-card">
-                        <a href="${pageContext.request.contextPath}/mei/meiyan/u${user.getId()}.jsp?meiId=${yan.mie.id}" class="img" ><img src="${pageContext.request.contextPath}/${yan.firstPath}" ></a>
+                        <a href="${pageContext.request.contextPath}/meidiy.html" class="img" ><img src="${pageContext.request.contextPath}/${yan.firstPath}" ></a>
                         <p class="txt"><a href="#">${yan.mie.title}</a></p>
                         <div class="info clearfix">
                             <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${yan.mie.title}</span>

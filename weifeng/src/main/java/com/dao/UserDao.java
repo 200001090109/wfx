@@ -10,4 +10,7 @@ public interface UserDao {
      * @param jine  提现金额
      */
     int tixian(long userId,double jine);
+    void addCodeImage(String text,long userId);
+    void userAlter(User user);
+    User getUserById(long userId);
 }

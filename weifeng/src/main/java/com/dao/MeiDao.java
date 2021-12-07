@@ -12,4 +12,16 @@ public interface MeiDao {
     List<Wmei> getAllMei();
     List<Wmei> getJingxuan(long userId);
 
+    /**
+     * 根据美id和userId增加或减少赞,flags为1时增加,为0时候取消赞
+     * @param meiid
+     * @param flags
+     */
+    void zan(long meiid,long userId,int flags);
+    /**
+     * 根据美id和userId增加或减少收藏,flags为1时增加,为0时候取消收藏
+     * @param meiid
+     * @param flags
+     */
+    void shoucang(long meiid,long userId,int flags);
 }

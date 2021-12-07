@@ -20,4 +20,9 @@ public interface BusinessService {
      * @param jine  提现金额
      */
     int tixian(long userId,double jine);
+    void addCodeImage(String text,long userId);
+    void userAlter(User user);
+    User getYserById(long userId);
+    void shoucang(long meiId, long userId, int flags);
+    void zan(long meiId, long userId, int flags);
 }

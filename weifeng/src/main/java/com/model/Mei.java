@@ -15,6 +15,8 @@ public class Mei {
   private Timestamp riqi;
   private String title;
   private int jingxuan;
+  private String fenlei;
+  private long user;
 
   public int getJingxuan() {
     return jingxuan;
@@ -46,8 +48,7 @@ public class Mei {
   public Mei() {
   }
 
-  private String fenlei;
-  private long user;
+
 
 
   public long getId() {
