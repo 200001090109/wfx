@@ -105,7 +105,7 @@ public class BusinessServiceImp implements BusinessService {
      */
     @Override
     public void addCodeImage(String text, long userId) {
-        userService.addCodeImage(text, userId);
+        userService.addCodeImage( userId);
     }
 
     /**
@@ -135,6 +135,26 @@ public class BusinessServiceImp implements BusinessService {
     @Override
     public void zan(long meiId, long userId, int flags) {
         meiService.zan(meiId, userId, flags);
+    }
+
+    /**
+     * 查询用户赞的
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Wmei> getAllZanById(long userId) {
+        return userService.getAllZanById(userId);
+    }
+
+    /**
+     * 查询用户收藏的
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Wmei> getAllCollectById(long userId) {
+        return userService.getAllCollectById(userId);
     }
 
     public static void main(String[] args) {
