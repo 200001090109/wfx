@@ -157,6 +157,11 @@ public class BusinessServiceImp implements BusinessService {
         return userService.getAllCollectById(userId);
     }
 
+    @Override
+    public void addUser(User user) {
+        userService.addUser(user);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));

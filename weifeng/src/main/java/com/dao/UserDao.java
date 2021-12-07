@@ -31,5 +31,9 @@ public interface UserDao {
      */
     List<Wmei> getAllCollectById(long userId);
 
-
+    /**
+     * 添加用户
+     * @param user
+     */
+    void addUser(User user);
 }
