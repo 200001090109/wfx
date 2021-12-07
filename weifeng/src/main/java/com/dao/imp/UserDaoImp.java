@@ -37,7 +37,7 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "select yue from weifengxiang where id = ?";
-            Number yue = queryRunner.query(sql1,new ScalarHandler<>(),userId);
+            Number yue = (Number) queryRunner.query(sql1,new ScalarHandler<>(),userId);
             if(jine>yue.doubleValue())return -1;
             String sql2 = "update weifengxiang set yue =yue-?,tixian = tixian+? where id = ?";
             queryRunner.update(sql2,new Object[]{jine,jine,userId});

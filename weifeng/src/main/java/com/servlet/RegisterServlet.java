@@ -23,14 +23,14 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1.获取上传的信息
         // 手机号
-        long newtel = Long.parseLong(request.getParameter("newtel"));
+        String newtel = request.getParameter("newtel");
         // 密码
         String newpwd = request.getParameter("newpwd");
         String newpwds = request.getParameter("newpwds");
         // 名称
         String newname = request.getParameter("newname");
         // 获取上传的图片
-        String newfilepath = upload(request, response);
+//        String newfilepath = upload(request, response);
         // 昵称
         String newnickname = request.getParameter("newnickname");
         // 邮箱
@@ -39,11 +39,12 @@ public class RegisterServlet extends HttpServlet {
         String newqianming = request.getParameter("newqianming");
         // 性别
         String[] radio1s = request.getParameterValues("radio1");
-        String radio = radio1s[0];
+        String newsex = radio1s[0];
 
         BusinessServiceImp bs = new BusinessServiceImp();
-
-
+        User user = new User(0,newname,newpwd,"images/login.png", newnickname, newsex, newtel, newemail, newqianming, 0,0);
+        bs.addUser(user);
+        request.getRequestDispatcher("user_login.jsp").forward(request,response);
     }
 
     public String upload(HttpServletRequest request, HttpServletResponse response) {
@@ -55,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
             DiskFileItemFactory factory = new DiskFileItemFactory();
 
             //
-            File f = new File("/src/main/webapp/images");
+            File f = new File("/tempFolder");
             // 设置文件缓存路径
             factory.setRepository(f);
             // 创建ServletFileUpload对象
@@ -97,13 +98,13 @@ public class RegisterServlet extends HttpServlet {
                         FileOutputStream out = new FileOutputStream(file);
                         byte[] buffer = new byte[1024];
                         int len;
-                        while ((len = in.read(buffer)) > 0) {
+                        while ((len = in.read(buffer)) != -1) {
                             out.write(buffer, 0 ,len);
-                            in.close();
-                            out.close();
-                            // 删除临时文件
-                            fileItem.delete();
                         }
+                        in.close();
+                        out.close();
+                        // 删除临时文件
+                        fileItem.delete();
                     }
                 }
             }

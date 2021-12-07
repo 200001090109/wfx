@@ -21,7 +21,7 @@ public class GetCodeServlet extends HttpServlet {
         try {
             BusinessServiceImp bs = new BusinessServiceImp();
             bs.addCodeImage("", userId);
-            String codePath = CodeImageUtil.getCode("E:\\Projects\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
+            String codePath = CodeImageUtil.getCode("D:\\Code\\Github\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
