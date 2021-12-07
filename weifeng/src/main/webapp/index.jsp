@@ -81,14 +81,19 @@
                             <p class="txt"><a href="tiediy_detail.html">${pai.mie.title}</a></p>
                             <div class="info clearfix">
                                 <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${user.nickname}</span>
-                                <span
-                                        class="zan"><i class="iconfont" style="color:
-                                        ${zans.contains(pai.mie.id)?'red':'grey'};">&#xe600;</i>${pai.mie.beizan}</span>
-                                <span
-                                        class="collect"><i class="iconfont"
-                                                           style="color:
-                                                           ${collects.contains(pai.mie.id)?'orange':'grey'}">&#xe605;
-                                </i>${pai.mie.beishoucang}</span>
+                                <span class="zan">
+                                    <a href="/weifeng/ZanServlet?flag=${zans.contains(pai.mie.id)?'0':1}&meiId=${pai.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont"
+                                           style="color: ${zans.contains(pai.mie.id)?'red':'grey'};">&#xe600;
+                                        </i>${pai.mie.beizan}
+                                    </a>
+                                </span>
+                                <span class="collect">
+                                    <a href="/weifeng/CollectServlet?flag=${collects.contains(pai.mie.id)?'0':1}&meiId=${pai.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont" style="color:
+                                                           ${collects.contains(pai.mie.id)?'orange':'grey'}">&#xe605;</i>${pai.mie.beishoucang}
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </li>
@@ -115,8 +120,20 @@
                         <p class="txt"><a href="#">${yan.mie.title}</a></p>
                         <div class="info clearfix">
                             <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${yan.mie.title}</span>
-                            <span class="zan"><i class="iconfont">&#xe600;</i>${yan.mie.beizan}</span>
-                            <span class="collect"><i class="iconfont">&#xe605;</i>${yan.mie.beishoucang}</span>
+                            <span class="zan">
+                                <a href="/weifeng/ZanServlet?flag=${zans.contains(yan.mie.id)?'0':1}&meiId=${yan.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont"
+                                           style="color: ${zans.contains(yan.mie.id)?'red':'grey'};">&#xe600;
+                                        </i>${yan.mie.beizan}
+                                    </a>
+                            </span>
+                            <span class="collect">
+                                <a href="/weifeng/CollectServlet?flag=${collects.contains(yan.mie.id)?'0':1}&meiId=${yan.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont" style="color:
+                                                           ${collects.contains(yan.mie.id)?'orange':'grey'}">&#xe605;
+                                        </i>${yan.mie.beishoucang}
+                                    </a>
+                            </span>
                         </div>
                     </div>
                 </li>
@@ -175,8 +192,21 @@
                             <div class="txt-box">
                                 <p class="txt"><a href="tiediy_detail.html">${jx.mie.title}</a></p>
                                 <div class="info clearfix">
-                                    <span class="zan"><i class="iconfont">&#xe600;</i>${jx.mie.beizan}人赞</span>
-                                    <span class="collect"><i class="iconfont">&#xe605;</i>${jx.mie.beishoucang}人收藏</span>
+                                    <span class="zan">
+                                        <a href="/weifeng/ZanServlet?flag=${zans.contains(jx.mie.id)?'0':1}&meiId=${jx.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont"
+                                           style="color: ${zans.contains(jx.mie.id)?'red':'grey'};">&#xe600;
+                                        </i>${jx.mie.beizan}人赞
+                                    </a>
+                                    </span>
+                                    <span class="collect">
+                                        <a
+                                                href="/weifeng/CollectServlet?flag=${collects.contains(jx.mie.id)?'0':1}&meiId=${jx.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
+                                        <i class="iconfont" style="color:
+                                                           ${collects.contains(jx.mie.id)?'orange':'grey'}">&#xe605;
+                                        </i>${jx.mie.beishoucang}人收藏
+                                    </a>
+                                    </span>
                                     <span class="author"><img src="${pageContext.request.contextPath}/${jx.owner.filePath}"></span>
                                 </div>
                             </div>
