@@ -16,13 +16,12 @@
     <div class="title">我的二维码</div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
   </header>
-    <div>${user.code}</div>
   <div id="content">
       <div id="con-two">
           <div class="con-code">
-          <p><img src="${pageContext.request.contextPath}/${user.code==null?'/images/loading.gif':user.code}" alt="null"
+          <p><img src="${pageContext.request.contextPath}/${user.code==null?'/images/loading.gif':user.code}"
           /></p>
-          <p>${codePath==null?'快生成专属二维码吧':'扫码上面的二维码，加为好友'}</p>
+          <p>${user.code==null?'快生成专属二维码吧':'扫码上面的二维码，加为好友'}</p>
           </div>
           <div id="bottom">
              <a class="green-btn" href="/weifeng/GetCodeServlet?userId=${user.id}">一键生成</a>
