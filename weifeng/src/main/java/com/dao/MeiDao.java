@@ -24,4 +24,6 @@ public interface MeiDao {
      * @param flags
      */
     void shoucang(long meiid,long userId,int flags);
+    List<Wmei> getAllMeiOrderByZan();
+    List<Wmei> getAllMeiOrderByShoucang();
 }
