@@ -38,7 +38,19 @@
             <p class="signature_txt">${user.nickname}</p>
         </div>
         <div class="item code">
-            <div class="codeimg"><img src="${pageContext.request.contextPath}/images/login.png" alt=""></div>
+            <div class="codeimg" style="position: relative;">
+                <c:choose>
+                    <c:when test="${user.code==null}">
+                        <img src="${pageContext.request.contextPath}/images/login.png" alt="" style="opacity: 0.1;">
+                        <a href="/weifeng/user_code.jsp" style="position: absolute;top: 50%;left: 50%;transform:
+                        translate(-50%, -50%);text-decoration: underline;color: #2d95de;font-size: 12px;">
+                            去生成二维码</a>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="${pageContext.request.contextPath}/${user.code}" alt="">
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
 

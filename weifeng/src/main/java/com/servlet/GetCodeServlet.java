@@ -1,6 +1,8 @@
 package com.servlet;
 
 import com.model.User;
+import com.service.BusinessService;
+import com.service.imp.BusinessServiceImp;
 import com.utils.CodeImageUtil;
 
 import javax.servlet.ServletException;
@@ -17,6 +19,8 @@ public class GetCodeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long userId = Long.parseLong(req.getParameter("userId"));
         try {
+            BusinessServiceImp bs = new BusinessServiceImp();
+            bs.addCodeImage("", userId);
             String codePath = CodeImageUtil.getCode("E:\\Projects\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
         } catch (Exception e) {
             e.printStackTrace();

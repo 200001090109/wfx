@@ -3,12 +3,16 @@ package com.dao.imp;
 
 
 import com.dao.UserDao;
-import com.model.User;
+import com.model.*;
 import com.utils.CodeImageUtil;
 import com.utils.JdbcUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImp implements UserDao {
     @Override
@@ -33,7 +37,7 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "select yue from weifengxiang where id = ?";
-            Number yue = (Number) queryRunner.query(sql1,new ScalarHandler<>(),userId);
+            Number yue = queryRunner.query(sql1,new ScalarHandler<>(),userId);
             if(jine>yue.doubleValue())return -1;
             String sql2 = "update weifengxiang set yue =yue-?,tixian = tixian+? where id = ?";
             queryRunner.update(sql2,new Object[]{jine,jine,userId});
@@ -45,10 +49,10 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void addCodeImage(String text,long userId) {
+    public void addCodeImage(long userId) {
         String filePath = "src/main/webapp/images/";
         try {
-            String databasePath = "images/" + CodeImageUtil.getCode(filePath,userId);
+            String databasePath = "images/" + userId + "_code.jpg";
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "update weifengxiang set code = ? where id=?";
             queryRunner.update(sql1,new Object[]{databasePath,userId});
@@ -83,4 +87,83 @@ public class UserDaoImp implements UserDao {
         }
     }
 
+    /**
+     * 根据id查询用户点赞的
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Wmei> getAllZanById(long userId) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from zan where userid = ?";
+            List<Zan> zans = queryRunner.query(sql,new BeanListHandler<>(Zan.class),userId);
+            List<Wmei> wmeis = new ArrayList<>();
+            for (Zan zan : zans){
+                sql = "select * from mei where id= ?";
+                Mei mei = queryRunner.query(sql,new BeanHandler<>(Mei.class),zan.getMeiid());
+                sql = "select * from filePath where meiid = ?";
+                List<FilePath> filePath= queryRunner.query(sql,new BeanListHandler<>(FilePath.class),zan.getMeiid());
+                wmeis.add(new Wmei(mei,filePath));
+            }
+            return wmeis;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 根据id查询用户收藏的
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Wmei> getAllCollectById(long userId) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from shoucang where userid = ?";
+            List<Zan> zans = queryRunner.query(sql,new BeanListHandler<>(Zan.class),userId);
+            List<Wmei> wmeis = new ArrayList<>();
+            for (Zan zan : zans){
+                sql = "select * from mei where id= ?";
+                Mei mei = queryRunner.query(sql,new BeanHandler<>(Mei.class),zan.getMeiid());
+                sql = "select * from filePath where meiid = ?";
+                List<FilePath> filePath= queryRunner.query(sql,new BeanListHandler<>(FilePath.class),zan.getMeiid());
+                wmeis.add(new Wmei(mei,filePath));
+            }
+            return wmeis;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param user
+     */
+    @Override
+    public void addUser(User user) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "insert into weifengxiang( pwd, name, filePath, nickname, sex, tel, email, qianming) " +
+                    "values( ?,?,?,?,?,?,?,?)";
+            queryRunner.update(sql,user.getPwd(),user.getName(),user.getFilePath(),user.getNickname(),user.getSex(),
+                    user.getTel(),user.getEmail(),user.getQianming());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        UserDaoImp ui = new UserDaoImp();
+        System.out.println(ui.getAllZanById(1).size());
+        Mei mei = ui.getAllZanById(1).get(0).getMie();
+        System.out.println(mei.getFenlei());
+    }
 }
