@@ -41,7 +41,7 @@
 					  border-radius: 4px;height: 40px;border-color: #71d49a;color: #2dcc70">
 				  </div>
 				  <div class="row row-btn">
-					  <a href="user_register.html" class="boder-btn">注册会员</a>
+					  <a href="user_register.jsp" class="boder-btn">注册会员</a>
 				  </div>
 				  <div class="row row-txt">
 					  <a href="user_mima.html" class="forget">忘记密码</a>
@@ -66,34 +66,7 @@
 	  </div>
 
  
-  <footer id="footer" class="foot">
-        <ul>
-            <li>
-            	<a href="index.jsp">
-	                <span class="img"><img src="images/nav1.png"></span>
-	                <p>首页</p>
-            	</a>
-            </li>
-            <li>
-            	<a href="tiediy.jsp">
-                   <span class="img"><img src="images/nav2.png"></span>
-                   <p>贴DIY</p>
-            	</a>
-            </li>
-            <li>
-            	<a href="meidiy.html">
-	                <span class="img"><img src="images/nav3.png"></span>
-	                <p>美DIY</p>
-            	</a>
-            </li>
-            <li>
-            	<a href="user_login.jsp">
-	                <span class="img"><img src="images/nav4.png"></span>
-	                <p>我的</p>
-            	</a>
-            </li>
-        </ul>
-  </footer>
+  <%@include file="footer.jsp"%>
   </form>
 </body>
 </html>
