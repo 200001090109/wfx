@@ -48,7 +48,7 @@ public class UserDaoImp implements UserDao {
     public void addCodeImage(String text,long userId) {
         String filePath = "src/main/webapp/images/";
         try {
-            String databasePath = "images/" + CodeImageUtil.getCode(filePath,userId);
+            String databasePath = "images/" + userId + "_code.jpg";
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "update weifengxiang set code = ? where id=?";
             queryRunner.update(sql1,new Object[]{databasePath,userId});
