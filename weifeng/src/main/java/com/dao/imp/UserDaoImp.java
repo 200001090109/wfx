@@ -10,8 +10,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import java.io.File;
-
 public class UserDaoImp implements UserDao {
     @Override
     public User loginCheck(String userName,String passWord) {
@@ -50,10 +48,35 @@ public class UserDaoImp implements UserDao {
     public void addCodeImage(String text,long userId) {
         String filePath = "src/main/webapp/images/";
         try {
-            String databasePath = "images/" + CodeImageUtil.getCode(text,filePath,userId);
+            String databasePath = "images/" + CodeImageUtil.getCode(filePath,userId);
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "update weifengxiang set code = ?";
-            queryRunner.update(sql1,databasePath);
+            String sql1 = "update weifengxiang set code = ? where id=?";
+            queryRunner.update(sql1,new Object[]{databasePath,userId});
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void userAlter(User user) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "update weifengxiang set nickname = ?,sex = ?,tel = ?,email = ?,qianming=? where id=?";
+            Object[] params = {user.getNickname(),user.getSex(),user.getTel(),user.getEmail(),user.getQianming(),user.getId()};
+            queryRunner.update(sql1,params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User getUserById(long userId) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from weifengxiang where id= ?";
+            return queryRunner.query(sql,new BeanHandler<>(User.class),userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

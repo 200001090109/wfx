@@ -13,7 +13,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().setAttribute("user",new User(0,"未登陆","未登陆","weifeng//images//not_login.png",
                 "未登陆","未登陆","未登陆","未登陆","未登陆",0,0));
-        response.sendRedirect("/wf/user_login.jsp");
+        response.sendRedirect("/weifeng/user_login.jsp");
     }
 
     @Override
