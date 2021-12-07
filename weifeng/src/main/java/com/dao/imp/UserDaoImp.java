@@ -4,10 +4,13 @@ package com.dao.imp;
 
 import com.dao.UserDao;
 import com.model.User;
+import com.utils.CodeImageUtil;
 import com.utils.JdbcUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import java.io.File;
 
 public class UserDaoImp implements UserDao {
     @Override
@@ -42,4 +45,19 @@ public class UserDaoImp implements UserDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addCodeImage(String text,long userId) {
+        String filePath = "src/main/webapp/images/";
+        try {
+            String databasePath = "images/" + CodeImageUtil.getCode(text,filePath,userId);
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "update weifengxiang set code = ?";
+            queryRunner.update(sql1,databasePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
 }

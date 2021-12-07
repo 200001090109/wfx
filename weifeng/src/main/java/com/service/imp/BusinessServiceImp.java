@@ -99,6 +99,16 @@ public class BusinessServiceImp implements BusinessService {
         return userService.tixian(userId, jine);
     }
 
+    /**
+     * 根据用户ID和内容生成二维码
+     * @param text
+     * @param userId
+     */
+    @Override
+    public void addCodeImage(String text, long userId) {
+        userService.addCodeImage(text, userId);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));
