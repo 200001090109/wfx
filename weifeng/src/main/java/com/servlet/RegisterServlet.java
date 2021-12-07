@@ -1,6 +1,7 @@
 package com.servlet;
 
 import com.model.User;
+import com.service.imp.BusinessServiceImp;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -20,96 +22,94 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1.获取上传的信息
+        // 手机号
         long newtel = Long.parseLong(request.getParameter("newtel"));
+        // 密码
         String newpwd = request.getParameter("newpwd");
         String newpwds = request.getParameter("newpwds");
+        // 名称
         String newname = request.getParameter("newname");
         // 获取上传的图片
         String newfilepath = upload(request, response);
+        // 昵称
+        String newnickname = request.getParameter("newnickname");
+        // 邮箱
         String newemail = request.getParameter("newemail");
+        // 签名
         String newqianming = request.getParameter("newqianming");
-        
+        // 性别
+        String[] radio1s = request.getParameterValues("radio1");
+        String radio = radio1s[0];
+
+        BusinessServiceImp bs = new BusinessServiceImp();
+
 
     }
 
-    public String upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //得到上传文件的保存目录，将上传的文件存放于images目录下，不允许外界直接访问，保证上传文件的安全
-        String savePath = this.getServletContext().getRealPath("/images");
-        String path = "";
-        File file = new File(savePath);
-        if(!file.exists()&&!file.isDirectory()){
-            System.out.println("目录或文件不存在！");
-            file.mkdir();
-        }
-        //消息提示
-        String message = "";
+    public String upload(HttpServletRequest request, HttpServletResponse response) {
+        String filepath = "";
         try {
-            //使用Apache文件上传组件处理文件上传步骤：
-            //1、创建一个DiskFileItemFactory工厂
-            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-            //2、创建一个文件上传解析器
-            ServletFileUpload fileUpload = new ServletFileUpload(diskFileItemFactory);
-            //解决上传文件名的中文乱码
-            fileUpload.setHeaderEncoding("UTF-8");
-            //3、判断提交上来的数据是否是上传表单的数据
-            if(!fileUpload.isMultipartContent(request)){
-                //按照传统方式获取数据
-                return path;
-            }
-            //4、使用ServletFileUpload解析器解析上传数据，解析结果返回的是一个List<FileItem>集合，每一个FileItem对应一个Form表单的输入项
-            List<FileItem> list = fileUpload.parseRequest(request);
-            for (FileItem item : list) {
-                //如果fileitem中封装的是普通输入项的数据
-                if(item.isFormField()){
-                    String name = item.getFieldName();
-                    //解决普通输入项的数据的中文乱码问题
-                    String value = item.getString("UTF-8");
-                    String value1 = new String(name.getBytes("iso8859-1"),"UTF-8");
-//                    System.out.println(name+"  "+value);
-//                    System.out.println(name+"  "+value1);
-                }else{
-                    //如果fileitem中封装的是上传文件，得到上传的文件名称，
-                    String fileName = item.getName();
-                    System.out.println(fileName);
-                    if(fileName==null||fileName.trim().equals("")){
-                        continue;
+            // 设置Content-Type字段
+            response.setContentType("text/html;chatset=utf-8");
+            // 创建DiskFileItemFactory对象
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            //
+            File f = new File("/src/main/webapp/images");
+            // 设置文件缓存路径
+            factory.setRepository(f);
+            // 创建ServletFileUpload对象
+            ServletFileUpload fileUpload = new ServletFileUpload(factory);
+            fileUpload.setHeaderEncoding("utf-8");
+            // 解析request对象，获取fileItem对象
+            List<FileItem> fileItems = fileUpload.parseRequest(request);
+            // 获取字符流
+            PrintWriter writer = response.getWriter();
+            // 遍历集合
+            for (FileItem fileItem : fileItems) {
+                // 判断是否为普通字段
+                if (fileItem.isFormField()) {
+                    String name = fileItem.getFieldName();
+                    if (name.equals("name")) {
+                        // 如果文件不为空，保存到value中
+                        if (!fileItem.getString().equals("")) {
+                            String value = fileItem.getString("utf-8");
+                        }
                     }
-                    //注意：不同的浏览器提交的文件名是不一样的，有些浏览器提交上来的文件名是带有路径的，如：  c:\a\b\1.txt，而有些只是单纯的文件名，如：1.txt
-                    //处理获取到的上传文件的文件名的路径部分，只保留文件名部分
-                    fileName = fileName.substring(fileName.lastIndexOf(File.separator)+1);
-                    //获取item中的上传文件的输入流
-                    InputStream is = item.getInputStream();
-                    //创建一个文件输出流
-                    FileOutputStream fos = new FileOutputStream(savePath+File.separator+fileName);
-                    //创建一个缓冲区
-                    byte buffer[] = new byte[1024];
-                    //判断输入流中的数据是否已经读完的标识
-                    int length = 0;
-                    //循环将输入流读入到缓冲区当中，(len=in.read(buffer))>0就表示in里面还有数据
-                    while((length = is.read(buffer))>0){
-                        //使用FileOutputStream输出流将缓冲区的数据写入到指定的目录(savePath + "\\" + filename)当中
-                        fos.write(buffer, 0, length);
+                }else {
+                    // 获取上传的文件名
+                    String filename = fileItem.getName();
+                    // 处理上传的文件
+                    if (fileItem!=null && !fileItem.equals("")) {
+                        filename = filename.substring(filename.lastIndexOf("\\") + 1);
+                        // 文件名需要唯一
+                        filename = UUID.randomUUID().toString() + '_'+filename;
+                        // 在服务创建同名文件
+                        String webPath = "/images";
+                        filepath = getServletContext().getRealPath((webPath+filename));
+                        // 创建文件
+                        File file = new File(filepath);
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                        // 获取文件上传流
+                        InputStream in = fileItem.getInputStream();
+                        // 打开服务器端上传文件
+                        FileOutputStream out = new FileOutputStream(file);
+                        byte[] buffer = new byte[1024];
+                        int len;
+                        while ((len = in.read(buffer)) > 0) {
+                            out.write(buffer, 0 ,len);
+                            in.close();
+                            out.close();
+                            // 删除临时文件
+                            fileItem.delete();
+                        }
                     }
-                    //关闭输入流
-                    is.close();
-                    //关闭输出流
-                    fos.close();
-                    //删除处理文件上传时生成的临时文件
-                    item.delete();
-                    message = "文件上传成功";
                 }
             }
-        } catch (FileUploadException | UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            message = "文件上传失败";
-        } catch (IOException e) {
-            e.printStackTrace();
+        }catch (Exception e) {
+            throw new RuntimeException(e);
         }
-//        request.setAttribute("message",message);
-//        request.getRequestDispatcher("user_login.jsp").forward(request, response);
-
-        return savePath;
+        return filepath;
     }
-
 }
