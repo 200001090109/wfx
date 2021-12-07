@@ -19,7 +19,7 @@
   <div id="content">
       <div id="con-two">
           <div class="con-code">
-          <p><img src="${pageContext.request.contextPath}/${user.code==null?'/images/loading.gif':user.code}"
+          <p><img src="${pageContext.request.contextPath}/${user.code==null?'/images/loading.gif':user.code}" alt="null"
           /></p>
           <p>${user.code==null?'快生成专属二维码吧':'扫码上面的二维码，加为好友'}</p>
           </div>

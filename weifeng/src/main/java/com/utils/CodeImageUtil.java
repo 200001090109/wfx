@@ -10,22 +10,21 @@ import java.net.URL;
 public class CodeImageUtil {
     /**
      * 发送二维码请求
-     * @param text 二维码内容
      * @param outFile 输出路径
      * @return 二维码文件名
      */
-    public static String getCode(String text, String outFile) throws Exception{
-        URL url = new URL("https://api.pwmqr.com/qrcode/create/?url=" + text);
+    public static String getCode(String outFile, long userId) throws Exception{
+        URL url = new URL("https://api.pwmqr.com/qrcode/create/?url=" +userId);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(5 * 1000);
         InputStream in = conn.getInputStream();
         byte[] data = readInputStream(in);
-        File imageFile = new File(outFile + text + "_code.jpg");
+        File imageFile = new File(outFile + userId + "_code.jpg");
         FileOutputStream outputStream = new FileOutputStream(imageFile);
         outputStream.write(data);
         outputStream.close();
-        return  text +"_code.jpg";
+        return  userId +"_code.jpg";
     }
 
     /**

@@ -21,4 +21,6 @@ public interface BusinessService {
      */
     int tixian(long userId,double jine);
     void addCodeImage(String text,long userId);
+    void userAlter(User user);
+    User getYserById(long userId);
 }

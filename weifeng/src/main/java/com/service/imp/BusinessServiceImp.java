@@ -2,7 +2,6 @@ package com.service.imp;
 
 import com.dao.MeiDao;
 import com.dao.UserDao;
-import com.dao.imp.UserDaoImp;
 import com.model.User;
 import com.model.Wmei;
 import com.service.BusinessService;
@@ -100,13 +99,32 @@ public class BusinessServiceImp implements BusinessService {
     }
 
     /**
-     * 根据用户ID和内容生成二维码
+     * 根据用户ID生成二维码,text未使用,可传任意参数
      * @param text
      * @param userId
      */
     @Override
     public void addCodeImage(String text, long userId) {
         userService.addCodeImage(text, userId);
+    }
+
+    /**
+     * 更改用户信息
+     * @param user
+     */
+    @Override
+    public void userAlter(User user) {
+        userService.userAlter(user);
+    }
+
+    /**
+     * 根据id查询用户
+     * @param userId
+     * @return
+     */
+    @Override
+    public User getYserById(long userId) {
+        return userService.getUserById(userId);
     }
 
     public static void main(String[] args) {
