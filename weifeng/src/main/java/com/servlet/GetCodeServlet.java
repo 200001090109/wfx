@@ -1,6 +1,7 @@
 package com.servlet;
 
 import com.model.User;
+import com.utils.CodeImageUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +15,15 @@ import java.io.IOException;
 public class GetCodeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("userId");
+        long userId = Long.parseLong(req.getParameter("userId"));
+        try {
+            String codePath = CodeImageUtil.getCode("E:\\Projects\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        user.setCode("images/code.png");
+        user.setCode("images/" + userId +"_code.jpg");
         session.setAttribute("user", user);
         req.getRequestDispatcher("/user_code.jsp").forward(req, resp);
     }
