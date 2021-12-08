@@ -222,6 +222,24 @@ public class MeiDaoImp implements MeiDao{
         }
     }
 
+    @Override
+    public Wmei getMeiById(long meiid) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select * from mei where id = ?";
+            String sql2 = "select * from filePath where meiid = ?";
+            String sql3 = "select * from weifengxiang where id=?";
+            Mei mei = queryRunner.query(sql1,new BeanHandler<>(Mei.class),meiid);
+            Wmei wmei = new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId()));
+            User user = queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser());
+            wmei.setOwner(user);
+            return wmei;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         Class cls = MeiDaoImp.class;
         System.out.println(cls.getName());

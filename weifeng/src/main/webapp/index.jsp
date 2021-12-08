@@ -77,8 +77,8 @@
                 <c:forEach items="<%=meipai%>" var="pai">
                     <li>
                         <div class="photo-card">
-                            <a href="tiediy_detail.html" class="img"><img src="${pageContext.request.contextPath}/${pai.firstPath}" ></a>
-                            <p class="txt"><a href="tiediy_detail.html">${pai.mie.title}</a></p>
+                            <a href="tiediy_detail.jsp?meiid=${pai.mie.id}" class="img"><img src="${pageContext.request.contextPath}/${pai.firstPath}" ></a>
+                            <p class="txt"><a href="tiediy_detail.jsp">${pai.mie.title}</a></p>
                             <div class="info clearfix">
                                 <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${user.nickname}</span>
                                 <span class="zan">
@@ -116,7 +116,7 @@
                 <c:forEach items="<%=yans%>" var="yan">
                 <li>
                     <div class="photo-card">
-                        <a href="${pageContext.request.contextPath}/meidiy.html" class="img" ><img src="${pageContext.request.contextPath}/${yan.firstPath}" ></a>
+                        <a href="${pageContext.request.contextPath}/yan_detail.jsp?meiid=${yan.mie.id}" class="img" ><img src="${pageContext.request.contextPath}/${yan.firstPath}" ></a>
                         <p class="txt"><a href="#">${yan.mie.title}</a></p>
                         <div class="info clearfix">
                             <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${yan.mie.title}</span>
@@ -151,7 +151,7 @@
             <ul class="clearfix">
                 <li>
                     <div class="photo-card">
-                        <a href="#" class="img" ><img src="images/img5.jpg" ></a>
+                        <a href="${pageContext.request.contextPath}/shi_detail.jsp" class="img" ><img src="images/img5.jpg" ></a>
                         <p class="txt"><a href="#">霍比屯的日常</a></p>
                         <div class="info clearfix">
                             <span class="author"><img src="images/user_mini.png">sfjjkjh</span>
@@ -188,9 +188,9 @@
                 <c:forEach items="<%=jxs%>" var="jx">
                     <li>
                         <div class="li-box clearfix">
-                            <a href="tiediy_detail.html" class="img fl"><img src="${pageContext.request.contextPath}/${jx.firstPath}" ></a>
+                            <a href="tiediy_detail.jsp" class="img fl"><img src="${pageContext.request.contextPath}/${jx.firstPath}" ></a>
                             <div class="txt-box">
-                                <p class="txt"><a href="tiediy_detail.html">${jx.mie.title}</a></p>
+                                <p class="txt"><a href="tiediy_detail.jsp">${jx.mie.title}</a></p>
                                 <div class="info clearfix">
                                     <span class="zan">
                                         <a href="/weifeng/ZanServlet?flag=${zans.contains(jx.mie.id)?'0':1}&meiId=${jx.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">

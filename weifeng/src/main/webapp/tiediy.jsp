@@ -38,9 +38,9 @@
 				<c:forEach items="<%=wmeis%>" var="wmei">
   	 			<li>
   	 				<div class="li-box clearfix">
-  	 					<a href="tiediy_detail.html" class="img fl" ><img src="${pageContext.request.contextPath}/${wmei.firstPath}"></a>
+  	 					<a href="tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img fl" ><img src="${pageContext.request.contextPath}/${wmei.firstPath}"></a>
   	 					<div class="txt-box">
-	  	 					<p class="txt"><a href="tiediy_detail.html">${wmei.mie.title}</a></p>
+	  	 					<p class="txt"><a href="tiediy_detail.jsp">${wmei.mie.title}</a></p>
 	  	 					<div class="info clearfix">
 	  	 						<span class="zan">
 									<a href="/weifeng/ZanServlet?flag=${zans.contains(wmei.mie.id)?'0':1}&meiId=${wmei.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">

@@ -182,6 +182,11 @@ public class BusinessServiceImp implements BusinessService {
         return getAllMeiOrderByShoucang();
     }
 
+    @Override
+    public Wmei getMeiById(long meiid) {
+        return meiService.getMeiById(meiid);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));
