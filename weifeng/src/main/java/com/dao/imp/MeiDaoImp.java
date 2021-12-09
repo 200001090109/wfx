@@ -42,12 +42,13 @@ public class MeiDaoImp implements MeiDao{
             String sql1 = "insert into mei(characters, fenlei, user, title) values(?,?,?,?)";
             String sql2 = "insert into filePath( meiid, filePath) values(?,?)";
             String sql3 = "select max(id )from mei ";
-            Number id = queryRunner.query(sql3,new ScalarHandler<>());
-            Mei mei = wmei.getMie();
-            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
-            Object[] params2 = {id.longValue(),filePath};
-            queryRunner.update(sql1,params1);
-            queryRunner.update(sql2,params2);
+            System.out.println(wmei.getMie().getFenlei()+wmei.getMie().getTitle()+wmei.getMie().getBeizan());
+//            Number id = queryRunner.query(sql3,new ScalarHandler<>());
+//            Mei mei = wmei.getMie();
+//            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
+//            Object[] params2 = {id.longValue(),filePath};
+//            queryRunner.update(sql1,params1);
+//            queryRunner.update(sql2,params2);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

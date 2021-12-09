@@ -28,10 +28,11 @@ public class UploadMeiServlet extends HttpServlet {
         String title = request.getParameter("title");
         String characters = request.getParameter("characters");
         String fenlei = request.getParameter("fenlei");
-        Mei mei = new Mei(0,characters,0,0,null,title,fenlei,userId);
-        Wmei wmei = new Wmei(mei);
-        bs.addMei(wmei,userId,filePath);
-        response.sendRedirect("/weifeng/mei_list.jsp");
+        System.out.println(title+characters+fenlei);
+//        Mei mei = new Mei(0,characters,0,0,null,title,fenlei,userId);
+//        Wmei wmei = new Wmei(mei);
+//        bs.addMei(wmei,userId,filePath);
+//        response.sendRedirect("/weifeng/mei_list.jsp");
     }
 
     @Override
