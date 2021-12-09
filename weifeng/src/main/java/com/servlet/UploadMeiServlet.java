@@ -19,9 +19,6 @@ public class UploadMeiServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String filePath = Upload.upload(request, response);
-        String[] webapps = filePath.split("\\\\");
-        filePath = webapps[webapps.length-2] + "/" + webapps[webapps.length-1];
         BusinessServiceImp bs = new BusinessServiceImp();
         User user = (User) request.getSession().getAttribute("user");
         long userId = user.getId();
@@ -29,6 +26,10 @@ public class UploadMeiServlet extends HttpServlet {
         String characters = request.getParameter("characters");
         String fenlei = request.getParameter("fenlei");
         System.out.println(title+characters+fenlei);
+        String filePath = Upload.upload(request, response);
+        String[] webapps = filePath.split("\\\\");
+        filePath = webapps[webapps.length-2] + "/" + webapps[webapps.length-1];
+
 //        Mei mei = new Mei(0,characters,0,0,null,title,fenlei,userId);
 //        Wmei wmei = new Wmei(mei);
 //        bs.addMei(wmei,userId,filePath);
