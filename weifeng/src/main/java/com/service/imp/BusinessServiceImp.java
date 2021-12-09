@@ -41,8 +41,8 @@ public class BusinessServiceImp implements BusinessService {
      * @param userId
      */
     @Override
-    public void addMei(Wmei wmei, long userId) {
-        meiService.addMei(wmei, userId);
+    public void addMei(Wmei wmei, long userId,String filePath) {
+        meiService.addMei(wmei, userId,filePath);
     }
 
     /**

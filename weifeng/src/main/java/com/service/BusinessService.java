@@ -8,7 +8,7 @@ import java.util.List;
 public interface BusinessService {
     User loginCheck(String userName,String passWord);
     List<Wmei> getAllMei(long id);
-    void addMei(Wmei wmei,long userId);
+    void addMei(Wmei wmei,long userId,String filePath);
     long getLastMeiId(long userId);
     List<Wmei> getByType(long userId, String type);
     List<Wmei> getAllMei();
