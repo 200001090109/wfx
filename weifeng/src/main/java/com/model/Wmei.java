@@ -29,6 +29,9 @@ public class Wmei {
 
     public Wmei() {
     }
+    public Wmei(Mei mie) {
+        this.mie = mie;
+    }
 
     public Wmei(Mei mie, List filePath) {
         this.mie = mie;
