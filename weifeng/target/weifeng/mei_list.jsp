@@ -60,7 +60,7 @@
 						  <li>
 							  <div class="photo-card">
 
-								  <a href="#" class="img" style="background-image: url(${pageContext.request.contextPath}/${wmei.firstPath});"></a>
+								  <a href="tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img" style="background-image: url(${pageContext.request.contextPath}/${wmei.firstPath});"></a>
 								  <p class="txt"><a href="#">${wmei.mie.title}</a></p>
 								  <div class="info clearfix">
 									  <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${user.nickname}</span>
