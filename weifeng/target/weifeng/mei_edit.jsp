@@ -18,6 +18,8 @@
             top: 0;
             opacity: 0;
         }
+
+
     </style>
 </head>
 
@@ -43,10 +45,26 @@
         <div class=" clearfix"></div>
     </div>
 
+    </div>
     <footer id="footer" class="foot">
         <a href="javascript:;" onclick="document.getElementById('shangchuan').submit()" class="green-btn ft-btn">发布</a>
     </footer>
 </form>
+<div id="uploadFile" style="width: 100%;text-align: center;">
+    <div class="wrapper">
+        <div class="image">
+            <img src="" style="height: 200px;width: 200px;">
+        </div>
+        <div class="content" style="padding: 0;">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <div class="text">No file chosen, yet!</div>
+        </div>
+        <div id="cancel-btn"><i class="" fas fa-times></i></div>
+        <div class="file-name" style="height: 30px;line-height: 30px;margin: 10px auto;">File name here</div>
+    </div>
+    <input id="default-btn" type="file" hidden>
+    <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+</div>
 </body>
 
 <script>
@@ -55,6 +73,7 @@
     const cancelBtn = document.querySelector("#cancel-btn");
     const defaultBtn = document.querySelector("#default-btn");
     const customBtn = document.querySelector("#custom-btn");
+    const text = document.getElementsByClassName("text")[0];
     const img = document.querySelector("img");
     let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
 
@@ -64,13 +83,12 @@
 
     defaultBtn.addEventListener("change", function () {
         const file = this.files[0];
-        console.log(file);
         if (file) {
             const reader = new FileReader();
             reader.onload = function () {
                 const result = reader.result;
                 img.src = result;
-                wrapper.classList.add("active");
+                text.style.visibility = "hidden";
             }
             cancelBtn.addEventListener("click", function () {
                 img.src = "";
