@@ -1,18 +1,14 @@
 package com.servlet;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-
 import com.service.imp.BusinessServiceImp;
 import com.utils.Upload;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import java.io.*;
-import java.util.List;
-import java.util.UUID;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(name = "UploadMeiServlet", value = "/UploadMeiServlet")
 public class UploadMeiServlet extends HttpServlet {
