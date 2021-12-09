@@ -1,6 +1,9 @@
 <%@ page import="com.service.BusinessService" %>
 <%@ page import="com.service.imp.BusinessServiceImp" %>
 <%@ page import="com.model.Wmei" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8"  %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +18,17 @@
 	long meiid = Long.parseLong(request.getParameter("meiid"));
 	BusinessService bs = new BusinessServiceImp();
 	Wmei wmei =  bs.getMeiById(meiid);
+	User user = (User) session.getAttribute("user");
+	List<Wmei> meis = bs.getAllZanById(user.getId());
+	ArrayList<Long> zans = new ArrayList<>();
+	for(Wmei mei:meis){
+		zans.add(mei.getMie().getId());
+	}
+	meis = bs.getAllCollectById(user.getId());
+	ArrayList<Long> collects = new ArrayList<>();
+	for(Wmei mei:meis){
+		collects.add(mei.getMie().getId());
+	}
 %>
 <body>
   <header id="header">
@@ -37,8 +51,20 @@
   		</div>
   		<div class="info clearfix">
 			<span class="author"><img src="images/user_mini.png"><%=wmei.getOwner().getNickname()%></span>
-			<span class="zan"><i class="iconfont">&#xe600;</i><%=wmei.getMie().getBeizan()%>人点赞</span>
-			<span class="collect"><i class="iconfont">&#xe605;</i><%=wmei.getMie().getBeishoucang()%>收藏</span>
+			<span class="zan">
+				<a href="/weifeng/ZanServlet?flag=<%=zans.contains(meiid)?"0":"1"%>&meiId=<%=meiid%>&userId=${user.id}&url=${pageContext.request.requestURL}">
+				<i class="iconfont"
+				   style="color: <%=zans.contains(meiid)?"orange":"grey"%>;">&#xe600;
+				</i><%=wmei.getMie().getBeizan()%>人点赞
+			</a>
+			</span>
+			<span class="collect">
+				<a
+						href="/weifeng/CollectServlet?flag=<%=collects.contains(meiid)?"0":"1"%>&meiId=<%=meiid%>&userId=${user.id}&url=${pageContext.request.requestURL}">
+				<i class="iconfont" style="color: <%=collects.contains(meiid)?"orange":"grey"%>;">&#xe605;
+				</i><%=wmei.getMie().getBeishoucang()%>收藏
+			</a>
+			</span>
 		</div>
   	</div> 
   	<div class="user_card clearfix">
