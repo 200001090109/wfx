@@ -23,7 +23,7 @@
 <body style="background:#fff;">
   <header id="header">
   	<a href="mei_list.jsp" class="iconfont fl">&#xe63f;</a>
-    <div class="title">美拍</div>
+    <div class="title">美拍/美言</div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
   </header>
 <form id="shangchuan" action="${pageContext.request.contextPath}/UploadMeiServlet" enctype="multipart/form-data" method="post">
