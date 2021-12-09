@@ -30,6 +30,7 @@
   <div class="content mei_edit">
   	<div class="detail_box">
   		<div class="con">
+			<input type="hidden" name="fenlei" value="美拍">
   			<div class="row-r1">
 				<input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title">
 			</div>

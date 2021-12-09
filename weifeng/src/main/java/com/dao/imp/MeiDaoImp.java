@@ -36,7 +36,7 @@ public class MeiDaoImp implements MeiDao{
     }
 
     @Override
-    public void addMei(Wmei wmei,long userId) {
+    public void addMei(Wmei wmei,long userId,String filePath) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "insert into mei(characters, fenlei, user, title) values(?,?,?,?)";
@@ -45,8 +45,7 @@ public class MeiDaoImp implements MeiDao{
             Number id = queryRunner.query(sql3,new ScalarHandler<>());
             Mei mei = wmei.getMie();
             Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
-            FilePath filePath = wmei.getFilePath().get(0);
-            Object[] params2 = {id.longValue(),filePath.getFilePath()};
+            Object[] params2 = {id.longValue(),filePath};
             queryRunner.update(sql1,params1);
             queryRunner.update(sql2,params2);
         } catch (Exception e) {
