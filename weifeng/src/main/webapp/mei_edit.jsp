@@ -31,9 +31,11 @@
   	<div class="detail_box">
   		<div class="con">
   			<div class="row-r1">
-			<input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title">
-		</div>
-
+				<input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title">
+			</div>
+			<div class="row-r1">
+				<input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="characters">
+			</div>
         <div class="row-r1" style="height:300px; border-bottom:0;">
 <%--        <p><img src="images/diy_detail.jpg"></p>--%>
             <input class="input_title" placeholder="内容" type="file" name="file">
