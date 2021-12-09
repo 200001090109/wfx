@@ -40,4 +40,5 @@ public interface BusinessService {
      * @return
      */
     List<Wmei> getAllMeiOrderByShoucang();
+    Wmei getMeiById(long meiid);
 }

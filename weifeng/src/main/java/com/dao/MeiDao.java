@@ -26,4 +26,5 @@ public interface MeiDao {
     void shoucang(long meiid,long userId,int flags);
     List<Wmei> getAllMeiOrderByZan();
     List<Wmei> getAllMeiOrderByShoucang();
+    Wmei getMeiById(long meiid);
 }
