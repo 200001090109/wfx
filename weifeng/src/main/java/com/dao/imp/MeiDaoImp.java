@@ -43,12 +43,12 @@ public class MeiDaoImp implements MeiDao{
             String sql2 = "insert into filePath( meiid, filePath) values(?,?)";
             String sql3 = "select max(id )from mei ";
             System.out.println(wmei.getMie().getFenlei()+wmei.getMie().getTitle()+wmei.getMie().getBeizan());
-//            Number id = queryRunner.query(sql3,new ScalarHandler<>());
-//            Mei mei = wmei.getMie();
-//            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
-//            Object[] params2 = {id.longValue(),filePath};
-//            queryRunner.update(sql1,params1);
-//            queryRunner.update(sql2,params2);
+            Number id = (Number) queryRunner.query(sql3,new ScalarHandler<>());
+            Mei mei = wmei.getMie();
+            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
+            Object[] params2 = {id.longValue(),filePath};
+            queryRunner.update(sql1,params1);
+            queryRunner.update(sql2,params2);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -238,11 +238,6 @@ public class MeiDaoImp implements MeiDao{
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        Class cls = MeiDaoImp.class;
-        System.out.println(cls.getName());
     }
 
 }

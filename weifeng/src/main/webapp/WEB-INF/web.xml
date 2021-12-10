@@ -9,5 +9,8 @@
   <welcome-file-list>
     <welcome-file>user_login.jsp</welcome-file>
   </welcome-file-list>
+  <session-config>
+    <session-timeout>2000000</session-timeout>
+  </session-config>
 </web-app>
 

@@ -29,16 +29,21 @@
 </header>
 <form id="shangchuan" action="${pageContext.request.contextPath}/UploadMeiServlet" enctype="multipart/form-data"
       method="post">
+    <input type="hidden" value="${user.id}" name="userId">
+    <input type="hidden" value="美言" name="type">
     <div class="content mei_edit">
         <div class="detail_box">
             <div class="con">
                 <div class="row-r1">
-                    <input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title">
+                    <input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title" value="test">
                 </div>
                 <div class="row-r1">
-                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="characters">
+                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="text" value="test">
                 </div>
-                
+                <div class="row-r1">
+                    <input class="input_title" type="file" pattern=".{1,20}" name="characters" value="test2">
+                </div>
+
         </div>
         <div class=" clearfix"></div>
     </div>
@@ -46,6 +51,7 @@
     <footer id="footer" class="foot">
         <a href="javascript:;" onclick="document.getElementById('shangchuan').submit()" class="green-btn ft-btn">发布</a>
     </footer>
+    </div>
 </form>
 </body>
 

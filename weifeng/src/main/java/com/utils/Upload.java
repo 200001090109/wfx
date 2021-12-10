@@ -11,12 +11,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Upload {
 
-    public static String upload(HttpServletRequest request, HttpServletResponse response) {
+    public static Map<String,String> upload(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, String> message =new HashMap<>();
         String filepath = "";
         try {
             // 设置Content-Type字段
@@ -40,12 +43,7 @@ public class Upload {
                 // 判断是否为普通字段
                 if (fileItem.isFormField()) {
                     String name = fileItem.getFieldName();
-                    if (name.equals("name")) {
-                        // 如果文件不为空，保存到value中
-                        if (!fileItem.getString().equals("")) {
-                            String value = fileItem.getString("utf-8");
-                        }
-                    }
+                    message.put(name,fileItem.getString("utf-8"));
                 }else {
                     // 获取上传的文件名
                     String filename = fileItem.getName();
@@ -61,6 +59,7 @@ public class Upload {
                         String webPath = "/images/";
                         filepath = "E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\" + filename;
                         // 创建文件
+                        message.put("webPath",webPath);
                         File file = new File(filepath);
                         file.getParentFile().mkdirs();
                         file.createNewFile();
@@ -83,6 +82,6 @@ public class Upload {
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return filepath;
+        return message;
     }
 }

@@ -187,6 +187,11 @@ public class BusinessServiceImp implements BusinessService {
         return meiService.getMeiById(meiid);
     }
 
+    @Override
+    public boolean alterPwd(long userId, String tel, String email, String newPwd) {
+        return userService.alterPwd(userId, tel, email, newPwd);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));
