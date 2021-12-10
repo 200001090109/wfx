@@ -29,6 +29,6 @@ public class ZanServlet extends HttpServlet {
             zans.add(mei.getMie().getId());
         }
         req.getSession().setAttribute("zans", zans);
-        req.getRequestDispatcher("/" + url + "?meiid=" + meiId).forward(req, resp);
+        req.getRequestDispatcher("/" + url).forward(req, resp);
     }
 }
