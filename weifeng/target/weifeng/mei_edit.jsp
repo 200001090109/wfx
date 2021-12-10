@@ -11,15 +11,33 @@
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="${pageContext.request.contextPath}/iconfont/iconfont.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
-        .file input {
+        #uploadCard {
+            border: 2px solid #7FDAD0;
+            height: 250px;
+            width: 250px;
             position: absolute;
-            font-size: 100px;
-            right: 0;
-            top: 0;
-            opacity: 0;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
+        #uploadCard img {
+            height: 100%;
+            width: 100%;
+        }
 
+        #customBtn {
+            position: absolute;
+            bottom: -60px;
+            width: 150px;
+            height: 40px;
+            background-color: #7FDAD0;
+            border: none;
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -40,66 +58,37 @@
                 <div class="row-r1">
                     <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="characters">
                 </div>
-                
+                <div id="uploadCard">
+                    <input type="file" id="defaultBtn" hidden>
+                    <img src="" alt="请选择图片" id="review">
+                    <input type="button" id="customBtn" value="选择图片" onclick="upload()"/>
+                </div>
         </div>
-        <div class=" clearfix"></div>
     </div>
 
     </div>
     <footer id="footer" class="foot">
-        <a href="javascript:;" onclick="document.getElementById('shangchuan').submit()" class="green-btn ft-btn">发布</a>
+        <a onclick="document.getElementById('shangchuan').submit()" class="green-btn ft-btn">发布</a>
     </footer>
 </form>
-<div id="uploadFile" style="width: 100%;text-align: center;">
-    <div class="wrapper">
-        <div class="image">
-            <img src="" style="height: 200px;width: 200px;">
-        </div>
-        <div class="content" style="padding: 0;">
-            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <div class="text">No file chosen, yet!</div>
-        </div>
-        <div id="cancel-btn"><i class="" fas fa-times></i></div>
-        <div class="file-name" style="height: 30px;line-height: 30px;margin: 10px auto;">File name here</div>
-    </div>
-    <input id="default-btn" type="file" hidden>
-    <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
-</div>
 </body>
 
 <script>
-    const wrapper = document.querySelector(".wrapper");
-    const fileName = document.querySelector(".file-name");
-    const cancelBtn = document.querySelector("#cancel-btn");
-    const defaultBtn = document.querySelector("#default-btn");
-    const customBtn = document.querySelector("#custom-btn");
-    const text = document.getElementsByClassName("text")[0];
-    const img = document.querySelector("img");
-    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-
-    function defaultBtnActive() {
+    const defaultBtn = document.getElementById("defaultBtn");
+    const image = document.getElementById("review");
+    function upload() {
         defaultBtn.click();
     }
-
-    defaultBtn.addEventListener("change", function () {
+    defaultBtn.addEventListener("change", function(){
         const file = this.files[0];
-        if (file) {
+        if(file){
             const reader = new FileReader();
             reader.onload = function () {
                 const result = reader.result;
-                img.src = result;
-                text.style.visibility = "hidden";
+                image.src = result;
             }
-            cancelBtn.addEventListener("click", function () {
-                img.src = "";
-                wrapper.classList.remove("active");
-            });
             reader.readAsDataURL(file);
         }
-        if (this.value) {
-            let valueStore = this.value.match(regExp);
-            fileName.textContent = valueStore;
-        }
-    });
+    })
 </script>
 </html>
