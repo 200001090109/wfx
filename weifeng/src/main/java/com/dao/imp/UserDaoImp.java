@@ -16,12 +16,12 @@ import java.util.List;
 
 public class UserDaoImp implements UserDao {
     @Override
-    public User loginCheck(String userName,String passWord) {
+    public User loginCheck(String userName, String passWord) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            Object[] params = {userName,passWord};
+            Object[] params = {userName, passWord};
             String sql = "select * from weifengxiang where name = ? and pwd = ?";
-            return queryRunner.query(sql,new BeanHandler<>(User.class),params);
+            return queryRunner.query(sql, new BeanHandler<>(User.class), params);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -37,11 +37,11 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "select yue from weifengxiang where id = ?";
-            Number yue = (Number) queryRunner.query(sql1,new ScalarHandler<>(),userId);
-            if(jine>yue.doubleValue())return -1;
+            Number yue = (Number) queryRunner.query(sql1, new ScalarHandler<>(), userId);
+            if (jine > yue.doubleValue()) return -1;
             String sql2 = "update weifengxiang set yue =yue-?,tixian = tixian+? where id = ?";
-            queryRunner.update(sql2,new Object[]{jine,jine,userId});
-            return (int) (yue.doubleValue()-jine);
+            queryRunner.update(sql2, new Object[]{jine, jine, userId});
+            return (int) (yue.doubleValue() - jine);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -55,7 +55,7 @@ public class UserDaoImp implements UserDao {
             String databasePath = "images/" + userId + "_code.jpg";
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "update weifengxiang set code = ? where id=?";
-            queryRunner.update(sql1,new Object[]{databasePath,userId});
+            queryRunner.update(sql1, new Object[]{databasePath, userId});
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -67,8 +67,8 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "update weifengxiang set nickname = ?,sex = ?,tel = ?,email = ?,qianming=? where id=?";
-            Object[] params = {user.getNickname(),user.getSex(),user.getTel(),user.getEmail(),user.getQianming(),user.getId()};
-            queryRunner.update(sql1,params);
+            Object[] params = {user.getNickname(), user.getSex(), user.getTel(), user.getEmail(), user.getQianming(), user.getId()};
+            queryRunner.update(sql1, params);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -80,7 +80,7 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from weifengxiang where id= ?";
-            return queryRunner.query(sql,new BeanHandler<>(User.class),userId);
+            return queryRunner.query(sql, new BeanHandler<>(User.class), userId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -98,14 +98,14 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from zan where userid = ?";
-            List<Zan> zans = queryRunner.query(sql,new BeanListHandler<>(Zan.class),userId);
+            List<Zan> zans = queryRunner.query(sql, new BeanListHandler<>(Zan.class), userId);
             List<Wmei> wmeis = new ArrayList<>();
-            for (Zan zan : zans){
+            for (Zan zan : zans) {
                 sql = "select * from mei where id= ?";
-                Mei mei = queryRunner.query(sql,new BeanHandler<>(Mei.class),zan.getMeiid());
+                Mei mei = queryRunner.query(sql, new BeanHandler<>(Mei.class), zan.getMeiid());
                 sql = "select * from filePath where meiid = ?";
-                List<FilePath> filePath= queryRunner.query(sql,new BeanListHandler<>(FilePath.class),zan.getMeiid());
-                wmeis.add(new Wmei(mei,filePath));
+                List<FilePath> filePath = queryRunner.query(sql, new BeanListHandler<>(FilePath.class), zan.getMeiid());
+                wmeis.add(new Wmei(mei, filePath));
             }
             return wmeis;
         } catch (Exception e) {
@@ -125,14 +125,14 @@ public class UserDaoImp implements UserDao {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from shoucang where userid = ?";
-            List<Zan> zans = queryRunner.query(sql,new BeanListHandler<>(Zan.class),userId);
+            List<Zan> zans = queryRunner.query(sql, new BeanListHandler<>(Zan.class), userId);
             List<Wmei> wmeis = new ArrayList<>();
-            for (Zan zan : zans){
+            for (Zan zan : zans) {
                 sql = "select * from mei where id= ?";
-                Mei mei = queryRunner.query(sql,new BeanHandler<>(Mei.class),zan.getMeiid());
+                Mei mei = queryRunner.query(sql, new BeanHandler<>(Mei.class), zan.getMeiid());
                 sql = "select * from filePath where meiid = ?";
-                List<FilePath> filePath= queryRunner.query(sql,new BeanListHandler<>(FilePath.class),zan.getMeiid());
-                wmeis.add(new Wmei(mei,filePath));
+                List<FilePath> filePath = queryRunner.query(sql, new BeanListHandler<>(FilePath.class), zan.getMeiid());
+                wmeis.add(new Wmei(mei, filePath));
             }
             return wmeis;
         } catch (Exception e) {
@@ -152,18 +152,27 @@ public class UserDaoImp implements UserDao {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into weifengxiang( pwd, name, filePath, nickname, sex, tel, email, qianming) " +
                     "values( ?,?,?,?,?,?,?,?)";
-            queryRunner.update(sql,user.getPwd(),user.getName(),user.getFilePath(),user.getNickname(),user.getSex(),
-                    user.getTel(),user.getEmail(),user.getQianming());
+            queryRunner.update(sql, user.getPwd(), user.getName(), user.getFilePath(), user.getNickname(), user.getSex(),
+                    user.getTel(), user.getEmail(), user.getQianming());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    public static void main(String[] args) {
-        UserDaoImp ui = new UserDaoImp();
-        System.out.println(ui.getAllZanById(1).size());
-        Mei mei = ui.getAllZanById(1).get(0).getMie();
-        System.out.println(mei.getFenlei());
+    @Override
+    public boolean alterPwd(String name, String tel, String email, String newPwd) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from weifengxiang where name=? and tel=? and email=?";
+            if(queryRunner.query(sql,new BeanHandler<>(User.class),name,tel,email)==null)return false;
+            sql = "update weifengxiang set pwd = ? where name= ?";
+            queryRunner.update(sql,newPwd,name);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }
+

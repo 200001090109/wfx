@@ -44,7 +44,7 @@
 					  <a href="user_register.jsp" class="boder-btn">注册会员</a>
 				  </div>
 				  <div class="row row-txt">
-					  <a href="user_mima.html" class="forget">忘记密码</a>
+					  <a href="user_mima.jsp" class="forget">忘记密码</a>
 				  </div>
 			  </div>
 			  <div class="h20"></div>

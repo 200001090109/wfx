@@ -36,4 +36,6 @@ public interface UserDao {
      * @param user
      */
     void addUser(User user);
+
+    boolean alterPwd(String username,String tel,String email,String newPwd);
 }

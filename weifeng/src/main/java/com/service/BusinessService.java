@@ -41,4 +41,5 @@ public interface BusinessService {
      */
     List<Wmei> getAllMeiOrderByShoucang();
     Wmei getMeiById(long meiid);
+    boolean alterPwd(String username, String tel, String email, String newPwd);
 }
