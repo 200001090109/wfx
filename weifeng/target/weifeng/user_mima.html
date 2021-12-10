@@ -17,28 +17,30 @@
   <div class="content">
   	 <div class="register-box">
   	 	 <div class="form-box">
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe64f;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="手机号" style="width:200px;">
-                    <a href="" class="yzm fr">发送验证码</a>
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="请输入验证码">
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-input clearfix">
-  	 	 		<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
-  	 	 		<div class="row-r">
-  	 	 			<input class="input_box" placeholder="新密码">
-  	 	 		</div>
-  	 	 	</div>
-  	 	 	<div class="row row-btn">
-  	 	 		<a class="green-btn">确定</a>
-  	 	 	</div>
+			 <form action="/weifeng/ChangePwdServlet" method="post">
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe64f;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="tel" placeholder="手机号" style="width:200px;">
+<!--						<a href="" class="yzm fr">发送验证码</a>-->
+					</div>
+				</div>
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="email" placeholder="请输入邮箱">
+					</div>
+				</div>
+				<div class="row row-input clearfix">
+					<div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
+					<div class="row-r">
+						<input class="input_box" name="pwd" placeholder="新密码">
+					</div>
+				</div>
+				<div class="row row-btn">
+					<input type="submit" class="green-btn">确定
+				</div>
+			 </form>
   	 	 </div>
   	 </div>
      
