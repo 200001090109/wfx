@@ -56,10 +56,9 @@ public class Upload {
                         // 文件名为：名称+文件名
                         filename = name + '_'+filename;
                         // 在服务创建同名文件
-                        String webPath = "/images/";
+                        String webPath = "images/";
                         filepath = "E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\" + filename;
                         // 创建文件
-                        message.put("webPath",webPath);
                         File file = new File(filepath);
                         file.getParentFile().mkdirs();
                         file.createNewFile();
@@ -76,6 +75,7 @@ public class Upload {
                         out.close();
                         // 删除临时文件
                         fileItem.delete();
+                        message.put("webPath",webPath+filename);
                     }
                 }
             }

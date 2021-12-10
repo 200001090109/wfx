@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,13 @@
   <div class="content">
   	 <div class="register-box">
   	 	 <div class="form-box">
-			 <form action="/weifeng/ChangePwdServlet" method="post">
+			 <form action="${pageContext.request.contextPath}/ChangePwdServlet" method="post">
+				 <div class="row row-input clearfix">
+					 <div class="row-l fl"><i class="iconfont">&#xe692;</i></div>
+					 <div class="row-r">
+						 <input class="input_box" name="username" placeholder="用户名">
+					 </div>
+				 </div>
 				<div class="row row-input clearfix">
 					<div class="row-l fl"><i class="iconfont">&#xe64f;</i></div>
 					<div class="row-r">

@@ -3,30 +3,32 @@ package com.servlet;
 import com.model.User;
 import com.service.imp.BusinessServiceImp;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet("/ChangePwdServlet")
+@WebServlet(name = "ChangePwdServlet", value = "/ChangePwdServlet")
 public class ChangePwdServlet extends HttpServlet {
-
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 1.获取用户传来的参数
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
         String utel = request.getParameter("tel");
         String uemail = request.getParameter("email");
         String upwd = request.getParameter("pwd");
+
         BusinessServiceImp bs = new BusinessServiceImp();
         User user = (User) request.getSession().getAttribute("user");
-        boolean flag = bs.alterPwd(user.getId(), utel, uemail, upwd);
+        boolean flag = bs.alterPwd(username, utel, uemail, upwd);
         if (flag) {
-            request.getRequestDispatcher("/weifeng/user_login.jsp").forward(request,response);
+            response.sendRedirect("/weifeng/user_login.jsp");
         }else {
-            request.getRequestDispatcher("/weifeng/user_mima.html").forward(request,response);
+            response.sendRedirect("/weifeng/user_mima.jsp");
         }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

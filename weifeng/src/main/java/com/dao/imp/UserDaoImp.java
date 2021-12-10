@@ -161,13 +161,13 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public boolean alterPwd(long userId, String tel, String email, String newPwd) {
+    public boolean alterPwd(String name, String tel, String email, String newPwd) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from weifengxiang where id=? and tel=? and email=?";
-            if(queryRunner.query(sql,new BeanHandler<>(User.class),userId)==null)return false;
-            sql = "update weifengxiang set pwd = ? where id = ?";
-            queryRunner.update(sql,newPwd,userId);
+            String sql = "select * from weifengxiang where name=? and tel=? and email=?";
+            if(queryRunner.query(sql,new BeanHandler<>(User.class),name,tel,email)==null)return false;
+            sql = "update weifengxiang set pwd = ? where name= ?";
+            queryRunner.update(sql,newPwd,name);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

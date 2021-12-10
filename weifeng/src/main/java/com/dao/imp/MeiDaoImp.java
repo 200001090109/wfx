@@ -11,7 +11,9 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MeiDaoImp implements MeiDao{
@@ -24,7 +26,11 @@ public class MeiDaoImp implements MeiDao{
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class),id);
             List<Wmei> wmeis = new ArrayList<>();
             for(Mei mei : meis) {
-                wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId())));
+                List<FilePath> filePaths= queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId());
+                if(filePaths.isEmpty()){
+                    filePaths.add(new FilePath(0,0,"images/user1meiyan1.png"));
+                }
+                wmeis.add(new Wmei(mei,filePaths));
             }
 
             return wmeis;
@@ -39,16 +45,17 @@ public class MeiDaoImp implements MeiDao{
     public void addMei(Wmei wmei,long userId,String filePath) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "insert into mei(characters, fenlei, user, title) values(?,?,?,?)";
+            String sql1 = "insert into mei(characters, fenlei, riqi,user, title) values(?,?,?,?,?)";
             String sql2 = "insert into filePath( meiid, filePath) values(?,?)";
-            String sql3 = "select max(id )from mei ";
-            System.out.println(wmei.getMie().getFenlei()+wmei.getMie().getTitle()+wmei.getMie().getBeizan());
-            Number id = (Number) queryRunner.query(sql3,new ScalarHandler<>());
             Mei mei = wmei.getMie();
-            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),userId,mei.getTitle()};
-            Object[] params2 = {id.longValue(),filePath};
+            Timestamp riqi = new Timestamp(Calendar.getInstance().getTimeInMillis());
+            Object[] params1 = {mei.getCharacters(), mei.getFenlei(),riqi,userId,mei.getTitle()};
             queryRunner.update(sql1,params1);
+            String sql3 = "select max(id )from mei ";
+            Number id = (Number) queryRunner.query(sql3,new ScalarHandler<>());
+            Object[] params2 = {(id).longValue(),filePath};
             queryRunner.update(sql2,params2);
+            System.out.printf(id+" ");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

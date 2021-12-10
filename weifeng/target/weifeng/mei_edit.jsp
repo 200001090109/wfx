@@ -35,13 +35,13 @@
         <div class="detail_box">
             <div class="con">
                 <div class="row-r1">
-                    <input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title" value="test">
+                    <input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title" >
                 </div>
                 <div class="row-r1">
-                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="text" value="test">
+                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="text" >
                 </div>
                 <div class="row-r1">
-                    <input class="input_title" type="file" pattern=".{1,20}" name="characters" value="test2">
+                    <input class="input_title" type="file" pattern=".{1,20}" name="characters" >
                 </div>
 
         </div>

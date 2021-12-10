@@ -188,8 +188,8 @@ public class BusinessServiceImp implements BusinessService {
     }
 
     @Override
-    public boolean alterPwd(long userId, String tel, String email, String newPwd) {
-        return userService.alterPwd(userId, tel, email, newPwd);
+    public boolean alterPwd(String username, String tel, String email, String newPwd) {
+        return userService.alterPwd(username, tel, email, newPwd);
     }
 
     public static void main(String[] args) {
