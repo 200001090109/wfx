@@ -21,8 +21,9 @@ public class GetCodeServlet extends HttpServlet {
         try {
             BusinessServiceImp bs = new BusinessServiceImp();
             bs.addCodeImage("", userId);
-            String codePath = CodeImageUtil.getCode("E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
-//            String codePath = CodeImageUtil.getCode("E:\\Projects\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
+            String friendUrl = "http://192.168.43.61:8080/weifeng/makefriend?userId=" + userId;
+//            String codePath = CodeImageUtil.getCode("E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId);
+            String codePath = CodeImageUtil.getCode("E:\\Projects\\wfx\\weifeng\\src\\main\\webapp\\images\\", userId, friendUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }

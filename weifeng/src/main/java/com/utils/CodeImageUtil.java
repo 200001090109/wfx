@@ -13,8 +13,8 @@ public class CodeImageUtil {
      * @param outFile 输出路径
      * @return 二维码文件名
      */
-    public static String getCode(String outFile, long userId) throws Exception{
-        URL url = new URL("https://api.pwmqr.com/qrcode/create/?url=" +userId);
+    public static String getCode(String outFile, long userId, String text) throws Exception{
+        URL url = new URL("https://api.pwmqr.com/qrcode/create/?url=" + text);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(5 * 1000);
