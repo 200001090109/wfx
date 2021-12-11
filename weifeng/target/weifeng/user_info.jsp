@@ -26,14 +26,15 @@
     <div class="title">个人资料</div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
   </header>
-  <form action="${pageContext.request.contextPath}/AlterUserServlet">
+  <form action="${pageContext.request.contextPath}/TAlterUserServlet" enctype="multipart/form-data" method="post">
   <div class="content">
 	  <input type="hidden" name="userid" value="${user.id}">
   	  <div class="ul-list">
   	  	 <ul>
   	  	 	<li class="pic">
   	  	 		<a>头像
-  	  	 		   <span class="fr"><img src="${pageContext.request.contextPath}/${user.filePath}"></span>
+					<input type="file" hidden id="fileup" name="filepath" >
+  	  	 		   <span class="fr"><img src="${user.filePath}" onclick="upfile()" id="touxiang"></span>
   	  	   	  	</a>
   	  	 	</li>
   	  	 </ul>
@@ -77,10 +78,32 @@
   	  	   </ul>
   	   </div>
 	  <div>
-		  <button  style="display:block;margin: 0 auto 20px;height: 50px;width: 100px;border: 1px solid #f0f0f0;background: #dbe0dc">确认修改</button>
+		  <button  style="display:block;margin: 0 auto 20px;height: 50px;width: 100px;border: 1px solid #f0f0f0;
+		  background: #dbe0dc" type="submit">确认修改</button>
 	  </div>
   </div>
   </form>
   <%@include file="footer.jsp"%>
+<script>
+	const img = document.getElementById("touxiang")
+	const file = document.getElementById("fileup")
+	function upfile(){
+		file.click()
+	}
+	file.onchange=function () {
+		const file = this.files[0];
+		if(file){
+			const reader = new FileReader();
+			reader.onload = function () {
+				const result = reader.result;
+				img.src = result;
+			}
+			reader.readAsDataURL(file);
+		}
+
+	}
+
+
+</script>
 </body>
 </html>

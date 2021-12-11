@@ -66,8 +66,8 @@ public class UserDaoImp implements UserDao {
     public void userAlter(User user) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "update weifengxiang set nickname = ?,sex = ?,tel = ?,email = ?,qianming=? where id=?";
-            Object[] params = {user.getNickname(), user.getSex(), user.getTel(), user.getEmail(), user.getQianming(), user.getId()};
+            String sql1 = "update weifengxiang set nickname = ?,sex = ?,tel = ?,email = ?,qianming=?,filePath=? where id=?";
+            Object[] params = {user.getNickname(), user.getSex(), user.getTel(), user.getEmail(), user.getQianming(),user.getFilePath(), user.getId()};
             queryRunner.update(sql1, params);
         } catch (Exception e) {
             e.printStackTrace();

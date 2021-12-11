@@ -49,6 +49,8 @@
 </header>
 <form id="shangchuan" action="${pageContext.request.contextPath}/UploadMeiServlet" enctype="multipart/form-data"
       method="post">
+    <input type="hidden" value="${user.id}" name="userId">
+    <input type="hidden" value="美言" name="type">
     <div class="content mei_edit">
         <div class="detail_box">
             <div class="con">
@@ -56,12 +58,13 @@
                     <input class="input_title" placeholder="请输入标题（必填）" pattern=".{1,20}" name="title">
                 </div>
                 <div class="row-r1">
-                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="characters">
+                    <input class="input_title" placeholder="请输入内容（必填）" pattern=".{1,20}" name="text">
                 </div>
                 <div id="uploadCard">
-                    <input type="file" id="defaultBtn" hidden>
+                    <input type="button" id="customBtn" value="选择图片" onclick="upload()" />
+                    <input type="file" id="defaultBtn" hidden name="file">
                     <img src="" alt="请选择图片" id="review">
-                    <input type="button" id="customBtn" value="选择图片" onclick="upload()"/>
+
                 </div>
         </div>
     </div>

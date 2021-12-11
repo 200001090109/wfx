@@ -56,6 +56,7 @@ public class MeiDaoImp implements MeiDao{
             Object[] params2 = {(id).longValue(),filePath};
             queryRunner.update(sql2,params2);
             System.out.printf(id+" ");
+            System.out.printf(filePath);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
