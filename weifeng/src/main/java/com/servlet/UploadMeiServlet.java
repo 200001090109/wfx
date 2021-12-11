@@ -28,7 +28,8 @@ public class UploadMeiServlet extends HttpServlet {
         Mei mei = new Mei(0,text,0,0,null,title,type,userId);
         Wmei wmei = new Wmei(mei);
         bs.addMei(wmei,userId,filePath);
-        response.sendRedirect("/weifeng/mei_list.jsp");
+        if(type.equals("美拍")) response.sendRedirect("/weifeng/mei_list.jsp");
+        else response.sendRedirect("/weifeng/meiyan_list.jsp");
     }
 
     @Override

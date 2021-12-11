@@ -7,11 +7,11 @@ import java.util.List;
 public interface MeiDao {
     List<Wmei> getAllMei(long id);
     void addMei(Wmei wmei,long userId,String filePath);
-    long getLastMeiId(long userId);
+    long getLastMeiId();
     List<Wmei> getByType(long userId,String type);
     List<Wmei> getAllMei();
     List<Wmei> getJingxuan(long userId);
-
+    List<Wmei> getAllByType(long userId, String type);
     /**
      * 根据美id和userId增加或减少赞,flags为1时增加,为0时候取消赞
      * @param meiid

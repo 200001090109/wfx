@@ -9,7 +9,7 @@ public interface BusinessService {
     User loginCheck(String userName,String passWord);
     List<Wmei> getAllMei(long id);
     void addMei(Wmei wmei,long userId,String filePath);
-    long getLastMeiId(long userId);
+    long getLastMeiId();
     List<Wmei> getByType(long userId, String type);
     List<Wmei> getAllMei();
     List<Wmei> getJingxuan(long userId);
@@ -42,4 +42,6 @@ public interface BusinessService {
     List<Wmei> getAllMeiOrderByShoucang();
     Wmei getMeiById(long meiid);
     boolean alterPwd(String username, String tel, String email, String newPwd);
+    List<Wmei> getAllByType(long userId, String type);
+    List<Wmei> getAllByType(long userId, int type);
 }

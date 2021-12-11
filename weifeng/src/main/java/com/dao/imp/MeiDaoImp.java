@@ -64,12 +64,29 @@ public class MeiDaoImp implements MeiDao{
     }
 
     @Override
-    public long getLastMeiId(long userId) {
+    public long getLastMeiId() {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select max(id) from mei where user = ?";
-            Number number = (Number) queryRunner.query(sql1,new ScalarHandler<>(),userId);
+            String sql1 = "select max(id) from mei ";
+            Number number = (Number) queryRunner.query(sql1,new ScalarHandler<>());
             return number.longValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public List<Wmei> getAllByType(long userId, String type) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select * from mei where user = ? and fenlei =? order by id ";
+            String sql2 = "select * from filePath where meiid = ?";
+            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class),new Object[]{userId,type});
+            List<Wmei> wmeis = new ArrayList<>();
+            for(Mei mei : meis) {
+                wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId())));
+            }
+            return wmeis;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

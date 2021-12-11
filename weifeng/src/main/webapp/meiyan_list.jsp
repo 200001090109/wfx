@@ -1,15 +1,9 @@
 <%@ page import="com.service.BusinessService" %>
-<%@ page import="com.model.User" %>
 <%@ page import="com.service.imp.BusinessServiceImp" %>
+<%@ page import="com.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page import="com.model.Wmei" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: UP
-  Date: 2021/12/9
-  Time: 8:30
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +18,8 @@
 <%
     BusinessService bs = new BusinessServiceImp();
     Long id = ((User) session.getAttribute("user")).getId();
-    List<Wmei> wmeis = bs.getByType(id, "美言");
+    List<Wmei> wmeis = bs.getAllByType(id,2);
+
 %>
 <body>
 <header id="header">
@@ -59,9 +54,11 @@
                             </a>
                         </div>
                     </li>
+
                     <c:forEach var="wmei" items="<%=wmeis%>">
                         <li>
                             <div class="photo-card">
+
                                 <a href="tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img" style="background-image: url(${pageContext.request.contextPath}/${wmei.firstPath});"></a>
                                 <p class="txt"><a href="#">${wmei.mie.title}</a></p>
                                 <div class="info clearfix">
@@ -72,10 +69,12 @@
                             </div>
                         </li>
                     </c:forEach>
+
                 </ul>
             </div>
         </div>
     </c:if>
+
 </div>
 <%@include file="footer.jsp"%>
 </body>

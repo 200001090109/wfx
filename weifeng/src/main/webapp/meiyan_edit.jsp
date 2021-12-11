@@ -44,13 +44,13 @@
 <body style="background:#fff;">
 <header id="header">
     <a href="mei_list.jsp" class="iconfont fl">&#xe63f;</a>
-    <div class="title">美拍</div>
+    <div class="title">美言</div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
 </header>
 <form id="shangchuan" action="${pageContext.request.contextPath}/UploadMeiServlet" enctype="multipart/form-data"
       method="post">
     <input type="hidden" value="${user.id}" name="userId">
-    <input type="hidden" value="美拍" name="type">
+    <input type="hidden" value="美言" name="type">
     <div class="content mei_edit">
         <div class="detail_box">
             <div class="con">
@@ -66,8 +66,8 @@
                     <img src="" alt="请选择图片" id="review">
 
                 </div>
+            </div>
         </div>
-    </div>
 
     </div>
     <footer id="footer" class="foot">

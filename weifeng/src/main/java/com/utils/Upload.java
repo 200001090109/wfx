@@ -1,6 +1,8 @@
 package com.utils;
 
 import com.model.User;
+import com.service.BusinessService;
+import com.service.imp.BusinessServiceImp;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -21,6 +23,8 @@ public class Upload {
     public static Map<String,String> upload(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String> message =new HashMap<>();
         String filepath = "";
+        BusinessService bs = new BusinessServiceImp();
+        long id = bs.getLastMeiId()+1;
         try {
             // 设置Content-Type字段
             response.setContentType("text/html;chatset=utf-8");
@@ -49,12 +53,11 @@ public class Upload {
                     String filename = fileItem.getName();
                     // 处理上传的文件
                     if (fileItem!=null && !fileItem.equals("")) {
-                        filename = filename.substring(filename.lastIndexOf("\\") + 1);
                         // 文件名需要唯一
                         User user = (User) request.getSession().getAttribute("user");
                         String name = user.getName();
                         // 文件名为：名称+文件名
-                        filename = name + '_'+filename;
+                        filename = name +id +"_.jpg";
                         // 在服务创建同名文件
                         String webPath = "images/";
                         filepath = "E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\" + filename;

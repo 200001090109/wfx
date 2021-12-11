@@ -47,12 +47,12 @@ public class BusinessServiceImp implements BusinessService {
 
     /**
      * 多余的
-     * @param userId
+     * @param
      * @return
      */
     @Override
-    public long getLastMeiId(long userId) {
-        return meiService.getLastMeiId(userId)+1;
+    public long getLastMeiId() {
+        return meiService.getLastMeiId();
     }
 
     /**
@@ -190,6 +190,25 @@ public class BusinessServiceImp implements BusinessService {
     @Override
     public boolean alterPwd(String username, String tel, String email, String newPwd) {
         return userService.alterPwd(username, tel, email, newPwd);
+    }
+
+    @Override
+    public List<Wmei> getAllByType(long userId, String type) {
+        return meiService.getAllByType(userId,type);
+    }
+
+    @Override
+    public List<Wmei> getAllByType(long userId, int type) {
+        if(type ==1){
+            return meiService.getAllByType(userId,"美拍");
+        }
+        if(type ==2){
+            return meiService.getAllByType(userId,"美言");
+        }
+        if(type ==3){
+            return meiService.getAllByType(userId,"美视");
+        }
+        return null;
     }
 
     public static void main(String[] args) {

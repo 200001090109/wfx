@@ -1,4 +1,3 @@
-<%--美拍列表--%>
 <%@ page import="com.service.BusinessService" %>
 <%@ page import="com.service.imp.BusinessServiceImp" %>
 <%@ page import="com.model.User" %>
@@ -19,7 +18,7 @@
 <%
 	BusinessService bs = new BusinessServiceImp();
 	Long id = ((User) session.getAttribute("user")).getId();
-	List<Wmei> wmeis = bs.getAllMei(id);
+	List<Wmei> wmeis = bs.getAllByType(id,1);
 
 %>
 <body>
