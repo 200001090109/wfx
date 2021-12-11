@@ -29,6 +29,6 @@ public class CollectServlet extends HttpServlet {
             collects.add(mei.getMie().getId());
         }
         req.getSession().setAttribute("collects", collects);
-        req.getRequestDispatcher("/"+url).forward(req, resp);
+        req.getRequestDispatcher("/" + url + "?meiid=" + meiId).forward(req, resp);
     }
 }
