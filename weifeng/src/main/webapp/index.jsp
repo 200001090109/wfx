@@ -42,8 +42,9 @@
                 <c:choose>
                     <c:when test="${user.code==null}">
                         <img src="${pageContext.request.contextPath}/images/login.png" alt="" style="opacity: 0.1;">
-                        <a href="/weifeng/user_code.jsp" style="position: absolute;top: 50%;left: 50%;transform:
-                        translate(-50%, -50%);text-decoration: underline;color: #2d95de;font-size: 12px;">
+                        <a href="/weifeng/user_code.jsp"
+                           style="position: absolute;top: 50%;left: 50%;transform:
+                        translate(-50%, -50%);text-decoration: underline;color: #2d95de;font-size: 12px;visibility: ${user.id==0?'hidden':'visible'};">
                             去生成二维码</a>
                     </c:when>
                     <c:otherwise>
