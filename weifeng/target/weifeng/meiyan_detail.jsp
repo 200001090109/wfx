@@ -66,7 +66,7 @@
             	</a>
             </li>
             <li class="active">
-            	<a href="meidiy.html">
+            	<a href="meidiy.jsp">
 	                <span class="img"><img src="images/nav3.png"></span>
 	                <p>美DIY</p>
             	</a>

@@ -179,7 +179,7 @@ public class BusinessServiceImp implements BusinessService {
      */
     @Override
     public List<Wmei> getAllMeiOrderByShoucang() {
-        return getAllMeiOrderByShoucang();
+        return meiService.getAllMeiOrderByShoucang();
     }
 
     @Override

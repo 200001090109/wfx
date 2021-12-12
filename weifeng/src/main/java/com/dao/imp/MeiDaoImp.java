@@ -211,7 +211,7 @@ public class MeiDaoImp implements MeiDao{
     public List<Wmei> getAllMeiOrderByZan() {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei order by beizan";
+            String sql1 = "select * from mei order by beizan desc ";
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id = ?";
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
@@ -231,7 +231,7 @@ public class MeiDaoImp implements MeiDao{
     public List<Wmei> getAllMeiOrderByShoucang() {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei order by beishoucang";
+            String sql1 = "select * from mei order by beishoucang desc ";
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id = ?";
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
