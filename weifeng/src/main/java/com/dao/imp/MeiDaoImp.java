@@ -23,6 +23,8 @@ public class MeiDaoImp implements MeiDao{
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
             String sql1 = "select * from mei where user = ?";
             String sql2 = "select * from filePath where meiid = ?";
+            String sql3 = "select * from weifengxiang where id=?";
+            User user = queryRunner.query(sql3,new BeanHandler<>(User.class),id);
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class),id);
             List<Wmei> wmeis = new ArrayList<>();
             for(Mei mei : meis) {
@@ -30,7 +32,9 @@ public class MeiDaoImp implements MeiDao{
                 if(filePaths.isEmpty()){
                     filePaths.add(new FilePath(0,0,"images/user1meiyan1.png"));
                 }
-                wmeis.add(new Wmei(mei,filePaths));
+                Wmei wmei =  new Wmei(mei,filePaths);
+                wmei.setOwner(user);
+                wmeis.add(wmei);
             }
 
             return wmeis;
@@ -259,6 +263,51 @@ public class MeiDaoImp implements MeiDao{
             User user = queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser());
             wmei.setOwner(user);
             return wmei;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Wmei> getAllMeiByUseridAndTypeAndOrder(long userId, int type, int zas) {
+        String zanOrShou = " ";
+        String leibie = " ";
+        if(type == 1)leibie = "美拍";
+        else if(type==2)leibie = "美言";
+        else leibie = "美视";
+        if(zas == 1)zanOrShou = "beishoucang";
+        else zanOrShou = "beizan";
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = String.format("select * from mei where fenlei = '%s' order by %s desc ", leibie, zanOrShou);
+            String sql2 = "select * from filePath where meiid = ?";
+            String sql3 = "select * from weifengxiang where id = ?";
+            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
+            List<Wmei> wmeis = new ArrayList<>();
+            for(Mei mei : meis) {
+                wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId()),
+                        queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser())));
+            }
+            return wmeis;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void del(long meiid) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "delete from filePath where meiid=?";
+            String sql2 = "delete from zan where meiid = ?";
+            String sql3 = "delete from shoucang where meiid = ?";
+            String sql4 = "delete from mei where id=?";
+            queryRunner.update(sql1,meiid);
+            queryRunner.update(sql2,meiid);
+            queryRunner.update(sql3,meiid);
+            queryRunner.update(sql4,meiid);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

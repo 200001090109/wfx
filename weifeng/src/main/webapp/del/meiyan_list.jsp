@@ -38,7 +38,7 @@
 
     <c:if test="${user.id == 0}">
         <p class="">
-            你当前还没有登陆哦<a href="user_login.jsp"><i style="color: #2dcc70">点击这里去登陆</i></a>
+            你当前还没有登陆哦<a href="../user_login.jsp"><i style="color: #2dcc70">点击这里去登陆</i></a>
         </p>
     </c:if>
     <c:if test="${user.id !=0}">
@@ -48,7 +48,7 @@
 
                     <li class="first">
                         <div class="photo-card" style=" background:#f0f0f0;">
-                            <a href="mei_edit.jsp" class="upload_btn">
+                            <a href="../mei_edit.jsp" class="upload_btn">
                                 <i class="iconfont">&#xe602;</i>
                                 <p>上传图片/文字</p>
                             </a>
@@ -59,7 +59,7 @@
                         <li>
                             <div class="photo-card">
 
-                                <a href="tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img" style="background-image: url(${pageContext.request.contextPath}/${wmei.firstPath});"></a>
+                                <a href="../tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img" style="background-image: url(${pageContext.request.contextPath}/${wmei.firstPath});"></a>
                                 <p class="txt"><a href="#">${wmei.mie.title}</a></p>
                                 <div class="info clearfix">
                                     <span class="author"><img src="${pageContext.request.contextPath}/${user.filePath}">${user.nickname}</span>
@@ -76,6 +76,6 @@
     </c:if>
 
 </div>
-<%@include file="footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

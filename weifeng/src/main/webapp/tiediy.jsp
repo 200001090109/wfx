@@ -5,7 +5,7 @@
 <%@ page import="com.model.Wmei" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.model.User" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>

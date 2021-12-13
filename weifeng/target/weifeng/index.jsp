@@ -4,7 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.model.Wmei" %>
 <%@ page import="com.model.User" %>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" errorPage="error.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>

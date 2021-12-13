@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
   <div class="content meidiy">
   	   <ul>
   	   	   <li>
-  	   	   	   <a href="mei_list.jsp">
+  	   	   	   <a href="mei_list.jsp?type=1&zas=1">
 	  	   	   	   <div class="item item-1 clearfix">
 	  	   	   	   	   <div class="pic fl"><i class="iconfont">&#xe62e;</i></div>
 	  	   	   	   	   <div class="txt-box">
@@ -29,7 +29,7 @@
   	   	   	   </a>
   	   	   </li>
   	   	   <li>
-			   <a href="meiyan_list.jsp">
+			   <a href="mei_list.jsp?type=2&zas=1">
 				   <div class="item item-2 clearfix">
 					   <div class="pic fl"><i class="iconfont">&#xe69a;</i></div>
 					   <div class="txt-box">
@@ -40,7 +40,7 @@
 			   </a>
   	   	   </li>
   	   	   <li>
-			   <a href="meishi_list.jsp">
+			   <a href="mei_list.jsp?type=3&zas=1">
   	   	   	   <div class="item item-3 clearfix">
   	   	   	   	   <div class="pic fl"><i class="iconfont">&#xe653;</i></div>
   	   	   	   	   <div class="txt-box">
@@ -48,6 +48,7 @@
   	   	   	   	   	  <p>搞笑/流行/价值/片段</p>
   	   	   	   	   </div>
   	   	   	   </div>
+			   </a>
   	   	   </li>
   	   </ul>
   </div>

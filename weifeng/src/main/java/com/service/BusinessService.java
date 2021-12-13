@@ -44,4 +44,7 @@ public interface BusinessService {
     boolean alterPwd(String username, String tel, String email, String newPwd);
     List<Wmei> getAllByType(long userId, String type);
     List<Wmei> getAllByType(long userId, int type);
+    List<Wmei> getAllMeiByUseridAndTypeAndOrder(long userId, int type, int zas);
+    void del(long meiid);
+    void addFriend(long myid, long frieddid);
 }

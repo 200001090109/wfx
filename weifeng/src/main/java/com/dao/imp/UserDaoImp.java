@@ -174,5 +174,24 @@ public class UserDaoImp implements UserDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addFriend(long myid, long frieddid) {
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select friend from friend where userid = ?";
+            String s = (String) queryRunner.query(sql1,new ScalarHandler<>(),myid);
+            String sql2 = "update friend set friend = ? where userid = ?";
+            queryRunner.update(sql2,s+frieddid+";",myid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        UserDao ud = new UserDaoImp();
+        ud.addFriend(1,8);
+    }
 }
 

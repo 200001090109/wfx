@@ -27,4 +27,6 @@ public interface MeiDao {
     List<Wmei> getAllMeiOrderByZan();
     List<Wmei> getAllMeiOrderByShoucang();
     Wmei getMeiById(long meiid);
+    List<Wmei> getAllMeiByUseridAndTypeAndOrder(long userId,int type,int zas);
+    void  del(long meiid);
 }

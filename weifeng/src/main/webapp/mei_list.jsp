@@ -3,7 +3,7 @@
 <%@ page import="com.model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.model.Wmei" %>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8"  errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -18,21 +18,47 @@
 <%
 	BusinessService bs = new BusinessServiceImp();
 	Long id = ((User) session.getAttribute("user")).getId();
-	List<Wmei> wmeis = bs.getAllByType(id,1);
-
+	List<Wmei> wmeis;
+	String title;
+	int zas = 0;
+	int type = 0;
+	if(request.getParameter("type")==null){
+		 type = 1;
+		 title="美拍";
+	}else {
+		if(Integer.parseInt(request.getParameter("type"))==1){
+			type = 1;
+			title="美拍";
+		}
+		else if(Integer.parseInt(request.getParameter("type"))==2){
+			type = 2;
+			title="美言";
+		}
+		else {
+			type = 3;
+			title="美视";
+		}
+	}
+	if(request.getParameter("zas")==null){
+		zas = 1;
+	}else {
+		if(Integer.parseInt(request.getParameter("zas"))==1) zas =1;
+		else zas =2;
+	}
+	wmeis = bs.getAllMeiByUseridAndTypeAndOrder(id, type, zas);
 %>
 <body>
   <header id="header">
   	<a href="#" class="iconfont fl">&#xe63f;</a>
-    <div class="title">美拍</div>
+    <div class="title"><%=title%></div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
   </header> 
   <div class="content mei_list">
   	<div class="top-nav">
   		<ul class="clearfix">
-  			<li><span><i class="iconfont">&#xe61d;</i>全部分类</span></li>
-  			<li><span><i class="iconfont">&#xe601;</i>点赞排序</span></li>
-  			<li><span><i class="iconfont">&#xe616;</i>我DIY的</span></li>
+  			<li><span><a href="mei_list.jsp?type=<%=type%>&zas=1"><i class="iconfont">&#xe61d;</i>收藏排序</a></span></li>
+  			<li><span><a href="mei_list.jsp?type=<%=type%>&zas=2"><i class="iconfont">&#xe601;</i>点赞排序</a></span></li>
+<%--  			<li><span><i class="iconfont">&#xe616;</i>我DIY的</span></li>--%>
   		</ul>
   	</div>
 

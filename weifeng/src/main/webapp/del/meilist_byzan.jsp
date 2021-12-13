@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <title>微风向</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../iconfont/iconfont.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -38,9 +38,9 @@
                 <c:forEach items="<%=wmeis%>" var="wmei">
                     <li>
                         <div class="li-box clearfix">
-                            <a href="tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img fl" ><img src="${pageContext.request.contextPath}/${wmei.firstPath}"></a>
+                            <a href="../tiediy_detail.jsp?meiid=${wmei.mie.id}" class="img fl" ><img src="${pageContext.request.contextPath}/${wmei.firstPath}"></a>
                             <div class="txt-box">
-                                <p class="txt"><a href="tiediy_detail.jsp">${wmei.mie.title}</a></p>
+                                <p class="txt"><a href="../tiediy_detail.jsp">${wmei.mie.title}</a></p>
                                 <div class="info clearfix">
 	  	 						<span class="zan">
 									<a href="/weifeng/ZanServlet?flag=${zans.contains(wmei.mie.id)?'0':1}&meiId=${wmei.mie.id}&userId=${user.id}&url=${pageContext.request.requestURL}">
@@ -67,12 +67,12 @@
             </ul>
 
             <div class="Edit">
-                <a href="meidiy.jsp" class="edit-btn"><i class="iconfont">&#xe62e;</i>我要贴</a>
+                <a href="../meidiy.jsp" class="edit-btn"><i class="iconfont">&#xe62e;</i>我要贴</a>
             </div>
         </div>
     </div>
 </div>
 
-<%@include file="footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </body>
 </html>
