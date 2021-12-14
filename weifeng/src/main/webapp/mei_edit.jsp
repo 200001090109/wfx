@@ -64,7 +64,6 @@
                     <input type="button" id="customBtn" value="选择图片" onclick="upload()" />
                     <input type="file" id="defaultBtn" hidden name="file">
                     <img src="" alt="请选择图片" id="review">
-
                 </div>
         </div>
     </div>
