@@ -1,3 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.model.User" %>
+<%@ page import="com.service.imp.BusinessServiceImp" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+	User user = (User) session.getAttribute("user");
+	BusinessServiceImp bs = new BusinessServiceImp();
+	List<User> friends = bs.getFriends(user.getId());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,21 +27,11 @@
   <div class="content">
 	  <div class="ul-list">
   	  	   <ul class="team">
-  	  	   	  <li class="pic">
-  	  	 		<span class="fl"><img src="images/user_mini.png"></span> 文娟~爱正顺久
-  	  	 	  </li>
-  	  	   	  <li class="pic">
-  	  	 		<span class="fl"><img src="images/user_mini.png"></span> 伊山无芜 
-  	  	 	  </li>
-              <li class="pic">
-  	  	 		<span class="fl"><img src="images/user_mini.png"></span> 知竹zZ 
-  	  	 	  </li>
-              <li class="pic">
-  	  	 		<span class="fl"><img src="images/user_mini.png"></span> 丸子 
-  	  	 	  </li>
-              <li class="pic">
-  	  	 		<span class="fl"><img src="images/user_mini.png"></span> 白色与梦 
-  	  	 	  </li>
+			   <c:forEach varStatus="friends" items="${friends}" var="friend">
+				   <li class="pic">
+					   <span class="fl"><img src="images/user_mini.png"></span> ${friend.nickname}
+				   </li>
+			   </c:forEach>
   	  	   </ul>
   	  </div>
      

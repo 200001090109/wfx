@@ -40,7 +40,7 @@
   	  	   	  	</a>
   	  	   	  </li>
   	  	   	  <li>
-  	  	   	  	<a href="user_team.html" class="arrow-right">
+  	  	   	  	<a href="user_team.jsp" class="arrow-right">
   	  	   	  	  <i class="iconfont">&#xe625;</i>我的团队
   	  	   	  	</a>
   	  	   	  </li>
