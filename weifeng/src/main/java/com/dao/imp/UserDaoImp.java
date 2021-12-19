@@ -189,6 +189,11 @@ public class UserDaoImp implements UserDao {
         }
     }
 
+    @Override
+    public List<User> getFriends(long userid) {
+        return null;
+    }
+
     public static void main(String[] args) {
         UserDao ud = new UserDaoImp();
         ud.addFriend(1,8);

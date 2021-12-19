@@ -33,7 +33,7 @@
 %>
 <body>
   <header id="header">
-  	<a href="#" class="iconfont fl">&#xe63f;</a>
+  	<a onclick="javascript: history.back()" class="iconfont fl">&#xe63f;</a>
     <div class="title">贴DIY详情</div>
     <a href="#" class="iconfont fr">&#xe6a0;</a>
   </header> 

@@ -48,4 +48,5 @@ public interface BusinessService {
     void del(long meiid);
     void addFriend(long myid, long frieddid);
     List<Wmei> getShouchangBytype(long userid, int type);
+    List<User> getFriends(long userid);
 }

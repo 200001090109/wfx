@@ -60,7 +60,8 @@ public class Upload {
                         filename = name +id +"_.jpg";
                         // 在服务创建同名文件
                         String webPath = "images/";
-                        filepath = "src/main/webapp/images/" + filename;
+                        filepath = "E:\\git\\wfx\\wfx\\weifeng\\src\\main\\webapp\\images\\" + filename;
+
                         // 创建文件
                         File file = new File(filepath);
                         file.getParentFile().mkdirs();

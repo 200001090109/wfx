@@ -39,7 +39,7 @@ public class LoginCheckServlet extends HttpServlet {
             request.getSession().setAttribute("zans", zans);
             request.getSession().setAttribute("collects", collects);
             if(request.getSession().getAttribute("friendId")!=null){
-                long friendId = (long) request.getSession().getAttribute("friendId");
+                long friendId = Long.parseLong(String.valueOf(request.getSession().getAttribute("friendId")));
                 //TODO: 添加好友
                 request.getSession().removeAttribute("friendId");
                 bs.addFriend(user.getId(), friendId);
