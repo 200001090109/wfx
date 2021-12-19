@@ -1,10 +1,7 @@
 package com.dao.imp;
 
 import com.dao.MeiDao;
-import com.model.FilePath;
-import com.model.Mei;
-import com.model.User;
-import com.model.Wmei;
+import com.model.*;
 import com.utils.JdbcUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -21,7 +18,7 @@ public class MeiDaoImp implements MeiDao{
     public List<Wmei> getAllMei(long id) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei where user = ?";
+            String sql1 = "select * from mei where user = ? order by id desc ";
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id=?";
             User user = queryRunner.query(sql3,new BeanHandler<>(User.class),id);
@@ -83,7 +80,7 @@ public class MeiDaoImp implements MeiDao{
     public List<Wmei> getAllByType(long userId, String type) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei where user = ? and fenlei =? order by id ";
+            String sql1 = "select * from mei where user = ? and fenlei =? order by id desc ";
             String sql2 = "select * from filePath where meiid = ?";
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class),new Object[]{userId,type});
             List<Wmei> wmeis = new ArrayList<>();
@@ -119,7 +116,7 @@ public class MeiDaoImp implements MeiDao{
     public List<Wmei> getAllMei() {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei";
+            String sql1 = "select * from mei order by id desc ";
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id = ?";
             List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
@@ -255,7 +252,7 @@ public class MeiDaoImp implements MeiDao{
     public Wmei getMeiById(long meiid) {
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = "select * from mei where id = ?";
+            String sql1 = "select * from mei where id = ? order by id desc";
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id=?";
             Mei mei = queryRunner.query(sql1,new BeanHandler<>(Mei.class),meiid);
@@ -280,10 +277,10 @@ public class MeiDaoImp implements MeiDao{
         else zanOrShou = "beizan";
         try {
             QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql1 = String.format("select * from mei where fenlei = '%s' order by %s desc ", leibie, zanOrShou);
+            String sql1 = String.format("select * from mei where user = ? and fenlei = '%s' order by %s desc ", leibie, zanOrShou);
             String sql2 = "select * from filePath where meiid = ?";
             String sql3 = "select * from weifengxiang where id = ?";
-            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class));
+            List<Mei> meis = queryRunner.query(sql1,new BeanListHandler<>(Mei.class),userId);
             List<Wmei> wmeis = new ArrayList<>();
             for(Mei mei : meis) {
                 wmeis.add(new Wmei(mei,queryRunner.query(sql2,new BeanListHandler<>(FilePath.class),mei.getId()),
@@ -314,4 +311,37 @@ public class MeiDaoImp implements MeiDao{
         }
     }
 
+    @Override
+    public List<Wmei> getShouchangBytype(long userid, int type) {
+        List<Wmei> wmeis = new ArrayList<>();
+        try {
+            String sql2;
+            if(type ==0) sql2 = "select * from mei where id = ?";
+            else if(type == 1)sql2 ="select * from mei where id = ? and fenlei = '美拍' ";
+            else if(type == 2)sql2 ="select * from mei where id = ? and fenlei = '美言' ";
+            else sql2 ="select * from mei where id = ? and fenlei = '美视' ";
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select meiid from shoucang where userid = ?";
+            String sql3 = "select * from weifengxiang where id = ?";
+            String sql4 = "select * from filePath where meiid = ?;";
+            List<Shoucang> s =  queryRunner.query(sql1,new BeanListHandler<>(Shoucang.class),userid);
+            for(Shoucang sc:s){
+                Mei mei = queryRunner.query(sql2,new BeanHandler<>(Mei.class),sc.getMeiid());
+                if(mei == null) continue;
+                User user = queryRunner.query(sql3,new BeanHandler<>(User.class),mei.getUser());
+                List<FilePath> filePaths = queryRunner.query(sql4,new BeanListHandler<>(FilePath.class),mei.getId());
+                wmeis.add(new Wmei(mei,filePaths,user));
+            }
+            return wmeis;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        MeiDao md = new MeiDaoImp();
+        md.getShouchangBytype(1,1);
+    }
 }

@@ -226,6 +226,16 @@ public class BusinessServiceImp implements BusinessService {
         userService.addFriend(myid, frieddid);
     }
 
+    @Override
+    public List<Wmei> getShouchangBytype(long userid, int type) {
+        return meiService.getShouchangBytype(userid, type);
+    }
+
+    @Override
+    public List<User> getFriends(long userid) {
+        return userService.getFriends(userid);
+    }
+
     public static void main(String[] args) {
         BusinessService bs = new BusinessServiceImp();
         System.out.println(bs.tixian(1,2000));

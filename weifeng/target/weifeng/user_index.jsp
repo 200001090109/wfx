@@ -45,7 +45,7 @@
   	  	   	  	</a>
   	  	   	  </li>
   	  	   	  <li>
-  	  	   	  	<a href="user_collect.html" class="arrow-right">
+  	  	   	  	<a href="user_collect.jsp" class="arrow-right">
   	  	   	  	  <i class="iconfont">&#xe73a;</i>我的收藏
   	  	   	  	</a>
   	  	   	  </li>

@@ -39,4 +39,5 @@ public interface UserDao {
 
     boolean alterPwd(String username,String tel,String email,String newPwd);
     void addFriend(long myid,long frieddid);
+    List<User> getFriends(long userid);
 }

@@ -3,6 +3,7 @@ package com.servlet;
 import com.dao.imp.UserDaoImp;
 import com.model.User;
 import com.model.Wmei;
+import com.service.BusinessService;
 import com.service.imp.BusinessServiceImp;
 
 import javax.print.attribute.standard.RequestingUserName;
@@ -38,10 +39,10 @@ public class LoginCheckServlet extends HttpServlet {
             request.getSession().setAttribute("zans", zans);
             request.getSession().setAttribute("collects", collects);
             if(request.getSession().getAttribute("friendId")!=null){
-                long friendId = (long) request.getSession().getAttribute("friendId");
+                long friendId = Long.parseLong(String.valueOf(request.getSession().getAttribute("friendId")));
                 //TODO: 添加好友
                 request.getSession().removeAttribute("friendId");
-                return;
+                bs.addFriend(user.getId(), friendId);
             }
             response.sendRedirect("/weifeng/user_index.jsp?isLogin=ture");
         }else {
