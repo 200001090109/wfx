@@ -191,12 +191,31 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List<User> getFriends(long userid) {
-        return null;
+        List<User> users = new ArrayList<>();
+        try {
+            QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql1 = "select friend from friend where userid = ?";
+            String s = (String) queryRunner.query(sql1,new ScalarHandler<>(),userid);
+            String[] friends = s.split(";");
+            String sql2 = "select * from weifengxiang where id = ?";
+            for (String f:friends){
+               User user =  queryRunner.query(sql2,new BeanHandler<>(User.class),Long.parseLong(f));
+               if(user!=null)users.add(user);
+            }
+
+            return users;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void main(String[] args) {
         UserDao ud = new UserDaoImp();
-        ud.addFriend(1,8);
+        for (User u:ud.getFriends(1)){
+            System.out.println(u.getId()+u.getFilePath());
+        }
     }
 }
 
