@@ -11,6 +11,8 @@ public class Wmei {
     private List<FilePath> filePath;
     private String firstPath;
     private User owner;
+
+
     public User getOwner() {
         return owner;
     }
@@ -47,10 +49,10 @@ public class Wmei {
         this.mie = mie;
     }
 
-    public Wmei(Mei mie,List filePath, User owner) {
+    public Wmei(Mei mie,List<FilePath> filePath, User owner) {
         this.mie = mie;
         this.filePath = filePath;
-        this.firstPath = ((FilePath)filePath.get(0)).getFilePath();
+        this.firstPath = filePath.get(0).getFilePath();
         this.owner = owner;
     }
 

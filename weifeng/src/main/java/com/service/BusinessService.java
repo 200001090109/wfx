@@ -47,4 +47,5 @@ public interface BusinessService {
     List<Wmei> getAllMeiByUseridAndTypeAndOrder(long userId, int type, int zas);
     void del(long meiid);
     void addFriend(long myid, long frieddid);
+    List<Wmei> getShouchangBytype(long userid, int type);
 }

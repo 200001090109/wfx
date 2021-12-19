@@ -7,14 +7,6 @@ public class Shoucang {
   private long userid;
   private long meiid;
 
-  public Shoucang() {
-  }
-
-  public Shoucang(long id, long userid, long meiid) {
-    this.id = id;
-    this.userid = userid;
-    this.meiid = meiid;
-  }
 
   public long getId() {
     return id;
