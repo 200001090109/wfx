@@ -42,6 +42,7 @@ public class LoginCheckServlet extends HttpServlet {
                 long friendId = Long.parseLong(String.valueOf(request.getSession().getAttribute("friendId")));
                 request.getSession().removeAttribute("friendId");
                 bs.addFriend(user.getId(), friendId);
+                bs.addFriend(friendId, user.getId());
             }
             response.sendRedirect("/weifeng/user_index.jsp?isLogin=ture");
         }else {
